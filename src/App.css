@@ -36,3 +36,24 @@
     transform: rotate(360deg);
   }
 }
+
+/* 768px 이상이면 테블릿 */
+@media screen and (min-width: 768px) {
+  .App{
+    background-color: lightgray;
+  }
+
+  .container{
+    width: 768px;
+    margin: auto;
+    background-color: white;
+  }
+}
+
+/* 1200px 이상이면 데스크탑 */
+@media screen and (min-width: 1200px) {
+  .App{
+    background-color: beige;
+  }
+}
+
