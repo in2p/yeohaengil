@@ -1,7 +1,10 @@
+import Card from '../components/Card.js';
+
 function Main() {
   return (
     <div className="container">
-      <div>안녕하세요</div>
+      <p>다가오는 여행</p>
+      <Card />
     </div>
   );
 }

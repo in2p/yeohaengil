@@ -1,6 +1,4 @@
-.App {
-  text-align: center;
-}
+
 
 .App-logo {
   height: 40vmin;
@@ -37,6 +35,10 @@
   }
 }
 
+.container{
+  padding: 20px;
+  font-size: small;
+}
 /* 768px 이상이면 테블릿 */
 @media screen and (min-width: 768px) {
   .App{
@@ -47,6 +49,7 @@
     width: 768px;
     margin: auto;
     background-color: white;
+    font-size: medium;
   }
 }
 
@@ -56,4 +59,6 @@
     background-color: beige;
   }
 }
+
+
 
