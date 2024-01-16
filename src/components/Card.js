@@ -44,6 +44,14 @@ const items = [
   { title: '원루프랩 수원점', category: '숙소', price: '118000원' },
 ];
 
+const DetailButton = styled.button`
+  background: white;
+  padding: 5px 20px;
+  border-radius: 20px;
+  margin-left: 20px;
+  border: 1px solid #fe4c40;
+`;
+
 function Card() {
   return (
     <Box>
@@ -73,17 +81,28 @@ function Card() {
           <p style={{ margin: '0px' }}>Day3</p>
         </Day>
       </FlexBox>
-      <FlexBox style={{ overflow: 'hidden' }}>
-        {items.map(a => (
-          <FlexBox>
-            <div className="content-img" />
-            <div className="content-column">
-              <h3>원루프랩 사당점</h3>
-              <p>카페</p>
-              <p>예상 8000원</p>
-            </div>
-          </FlexBox>
-        ))}
+      <div style={{ overflow: 'hidden' }}>
+        <FlexBox style={{ width: '300vw' }}>
+          {items.map(a => (
+            <FlexBox>
+              <div className="content-img" />
+              <div className="content-column">
+                <h3>원루프랩 사당점</h3>
+                <p>카페</p>
+                <p>예상 8000원</p>
+              </div>
+            </FlexBox>
+          ))}
+        </FlexBox>
+      </div>
+      <FlexBox
+        style={{
+          padding: '15px',
+          justifyContent: 'flex-end',
+        }}
+      >
+        <p>평균 123,456원</p>
+        <DetailButton>일정 상세보기</DetailButton>
       </FlexBox>
     </Box>
   );
