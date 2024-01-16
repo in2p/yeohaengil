@@ -16,6 +16,7 @@ const Destination = styled.div`
   justify-content: space-between;
   padding: 0px 5px;
   background: #eee;
+  font-size: 12px;
 `;
 
 const FlexBox = styled.div`
@@ -28,16 +29,28 @@ const Day = styled.div`
   align-items: center;
   background-color: #eee;
   font-weight: bold;
+  font-size: 12px;
   margin: 5px;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 7px;
 `;
+const FlexColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const items = [
+  { title: '원루프랩 사당점', category: '카페', price: '8000원' },
+  { title: '원루프랩 강남점', category: '식당', price: '18000원' },
+  { title: '원루프랩 수원점', category: '숙소', price: '118000원' },
+];
+
 function Card() {
   return (
     <Box>
+      {/* 강원도 강릉 과 날짜 */}
       <Destination>
         <FlexBox>
-          <PiAirplaneTiltLight style={{ fontSize: '30px' }} />
+          <PiAirplaneTiltLight style={{ fontSize: '20px' }} />
           <p>강원도 강릉</p>
         </FlexBox>
         <FlexBox>
@@ -45,19 +58,32 @@ function Card() {
           <p>2023.12.14 ~ 2023.12.16</p>
         </FlexBox>
       </Destination>
+      {/* Day1, Day2, ... */}
       <FlexBox style={{ overflow: 'hidden' }}>
         <Day style={{ background: '#FE4C40', color: 'white' }}>
-          <PiWalletBold style={{ fontSize: '20px', margin: '0px' }} />
+          <PiWalletBold style={{ fontSize: '15px', margin: '0px' }} />
           <p style={{ margin: '0px' }}>Day1</p>
         </Day>
         <Day>
-          <PiWalletBold style={{ fontSize: '20px', margin: '0px' }} />
+          <PiWalletBold style={{ fontSize: '15px', margin: '0px' }} />
           <p style={{ margin: '0px' }}>Day2</p>
         </Day>
         <Day>
-          <PiWalletBold style={{ fontSize: '20px', margin: '0px' }} />
+          <PiWalletBold style={{ fontSize: '15px', margin: '0px' }} />
           <p style={{ margin: '0px' }}>Day3</p>
         </Day>
+      </FlexBox>
+      <FlexBox style={{ overflow: 'hidden' }}>
+        {items.map(a => (
+          <FlexBox>
+            <div className="content-img" />
+            <div className="content-column">
+              <h3>원루프랩 사당점</h3>
+              <p>카페</p>
+              <p>예상 8000원</p>
+            </div>
+          </FlexBox>
+        ))}
       </FlexBox>
     </Box>
   );
