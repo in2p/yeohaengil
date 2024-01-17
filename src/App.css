@@ -40,13 +40,13 @@
   font-size: small;
 }
 /* 768px 이상이면 테블릿 */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 375px) {
   .App{
     background-color: lightgray;
   }
 
   .container{
-    width: 768px;
+    width: 375px;
     margin: auto;
     background-color: white;
     font-size: medium;
