@@ -1,11 +1,7 @@
-
-
-/* 
-.container{
+/* .container{
   padding: 20px;
   font-size: small;
 }
-/* 768px 이상이면 테블릿 */
 @media screen and (min-width: 375px) {
   .App{
     background-color: lightgray;
@@ -18,17 +14,13 @@
     font-size: medium;
   }
 }
-
-/* 1200px 이상이면 데스크탑 */
 @media screen and (min-width: 1200px) {
   .App{
     background-color: beige;
   }
-}
-  */
+} */
 
-
-.App {
-  text-align: center;
+.fullContainer {
+  margin: 50px 14px;
 }
 
