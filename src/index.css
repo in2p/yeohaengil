@@ -1,7 +1,3 @@
-@font-face {
-    font-family: "ownglyph_ryuttung";
-    src: url("../src/assets/fonts/ownglyph_ryuttung.ttf"); 
-}
 
 html {
     background-color: #f2f2f2;
@@ -17,6 +13,9 @@ body {
     background-color: #fff;
     box-shadow: rgba(0,0,0,0.2)  0px 20px 30px;
 
-    font-family: "ownglyph_ryuttung";
-}
-  
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+  }
+

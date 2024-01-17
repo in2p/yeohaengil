@@ -1,0 +1,24 @@
+.content-img{
+    width: 100px;
+    height: 100px;
+    background: #eee;
+    border-radius: 10px;
+    margin: 10px 10px 10px 20px;
+}
+
+/* Card.js */
+.content-column{
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.content-column h3{
+    margin: 0px;
+}
+.content-column p{
+    font-weight: 800;
+    color: gray;
+    font-size: 12px;
+    margin: 0px;
+}
