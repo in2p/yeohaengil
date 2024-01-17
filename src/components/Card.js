@@ -8,7 +8,7 @@ const Box = styled.div`
   width: 100%;
   margin: auto;
   border-radius: 15px;
-  box-shadow: 0px 5px 10px 0px #888888; #888888;
+  box-shadow: 0px 5px 10px 0px #888888;
   padding-top: 150px;
 `;
 const Destination = styled.div`
