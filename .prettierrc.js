@@ -3,6 +3,7 @@
  * - https://prettier.io/docs/en/options.html
  */
 module.exports = {
+
     printWidth: 80, // 한 줄 최대 문자 수
     tabWidth: 2, // 들여쓰기 시, 탭 너비
     useTabs: false, // 스페이스 대신 탭 사용
@@ -16,3 +17,4 @@ module.exports = {
   };
 
   
+
