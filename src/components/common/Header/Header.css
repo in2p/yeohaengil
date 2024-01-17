@@ -1,0 +1,12 @@
+.headerContainer {
+    position: sticky;
+    top: 44px; /*상단고정*/
+    left: 0;
+    right: 0;
+}
+
+.headerLogo {
+    display: flex;
+    justify-content: center; /*수평정렬*/
+    align-items: center; /*수직정렬*/
+}
