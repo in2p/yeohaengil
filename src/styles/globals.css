@@ -22,3 +22,11 @@
     font-size: 12px;
     margin: 0px;
 }
+
+.content-row p{
+    color: gray;
+    font-size: 12px;
+    margin: 0px;
+    display: flex;
+    float: left;
+}
