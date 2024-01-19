@@ -1,10 +1,16 @@
+html {
+    background-color: #f2f2f2;
+}
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    width: 100%;
+    top: 0;
+    max-width: 375px;
+    height: calc(var(--vh, 1vh) * 100); /*모바일에서 잘 보이기 위함*/
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
+    box-shadow: rgba(0,0,0,0.2)  0px 20px 30px;
 }
 
 code {
