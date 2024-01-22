@@ -1,4 +1,13 @@
+/* color */
+.bg-main-color{
+    background-color: #FE4C40;
+    color: white;
+}
 
+.bg-default-color{
+    background-color: #eee;
+    color: black;
+}
 /* img css */
 .content-img{
     width: 80px;

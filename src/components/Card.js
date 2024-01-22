@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import '../styles/globals.css';
 import { PiAirplaneTiltLight, PiWalletBold } from 'react-icons/pi';
 import { FaRegCalendarAlt } from 'react-icons/fa';
+import { useState } from 'react';
 
 const Box = styled.div`
   width: 100%;
@@ -21,7 +22,6 @@ const Destination = styled.div`
 const Day = styled.div`
   display: flex;
   align-items: center;
-  background-color: #eee;
   font-weight: bold;
   font-size: 12px;
   margin: 5px;
@@ -29,9 +29,16 @@ const Day = styled.div`
   padding: 7px;
 `;
 const items = [
-  { title: '원루프랩 사당점', category: '카페', price: '8000원' },
-  { title: '원루프랩 강남점', category: '식당', price: '18000원' },
-  { title: '원루프랩 수원점', category: '숙소', price: '118000원' },
+  [
+    { title: '원루프랩 사당점', category: '카페', price: '8000원' },
+    { title: '원루프랩 강남점', category: '식당', price: '18000원' },
+    { title: '원루프랩 수원점', category: '숙소', price: '118000원' },
+  ],
+  [
+    { title: '원루프랩 사당점', category: '카페', price: '8000원' },
+    { title: '원루프랩 강남점', category: '식당', price: '18000원' },
+    { title: '원루프랩 수원점', category: '숙소', price: '118000원' },
+  ],
 ];
 
 const DetailButton = styled.button`
@@ -44,6 +51,9 @@ const DetailButton = styled.button`
 `;
 
 function Card() {
+  const dayLength = items.length;
+  const [day, setDay] = useState(1);
+
   return (
     <Box>
       {/* 강원도 강릉 과 날짜 */}
@@ -59,18 +69,27 @@ function Card() {
       </Destination>
       {/* Day1, Day2, ... */}
       <div className="d-flex" style={{ overflow: 'hidden' }}>
-        <Day style={{ background: '#FE4C40', color: 'white' }}>
-          <PiWalletBold style={{ fontSize: '15px', margin: '0px' }} />
-          <p style={{ margin: '0px' }}>Day1</p>
-        </Day>
-        <Day>
-          <PiWalletBold style={{ fontSize: '15px', margin: '0px' }} />
-          <p style={{ margin: '0px' }}>Day2</p>
-        </Day>
-        <Day>
-          <PiWalletBold style={{ fontSize: '15px', margin: '0px' }} />
-          <p style={{ margin: '0px' }}>Day3</p>
-        </Day>
+        {items.map((a, i) => {
+          if (i + 1 === day) {
+            return (
+              <Day className="bg-main-color">
+                <PiWalletBold style={{ fontSize: '15px', margin: '0px' }} />
+                <p style={{ margin: '0px' }}>Day{i + 1}</p>
+              </Day>
+            );
+          }
+          return (
+            <Day
+              className="bg-default-color"
+              onClick={() => {
+                setDay(i + 1);
+              }}
+            >
+              <PiWalletBold style={{ fontSize: '15px', margin: '0px' }} />
+              <p style={{ margin: '0px' }}>Day{i + 1}</p>
+            </Day>
+          );
+        })}
       </div>
       <div style={{ overflow: 'hidden' }}>
         <div className="d-flex" style={{ width: '300vw' }}>
@@ -78,9 +97,9 @@ function Card() {
             <div className="d-flex" key={{ i }}>
               <div className="content-img" />
               <div className="content-column">
-                <h3>원루프랩 사당점</h3>
-                <p>카페</p>
-                <p>예상 8000원</p>
+                <h3>{a.title}</h3>
+                <p>{a.category}</p>
+                <p>예상 {a.price}원</p>
               </div>
             </div>
           ))}
