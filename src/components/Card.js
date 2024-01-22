@@ -8,7 +8,7 @@ const Box = styled.div`
   width: 100%;
   margin: auto;
   border-radius: 15px;
-  box-shadow: 0px 5px 10px 0px #888888;
+  box-shadow: 0px 3px 5px 0px #888888;
   padding-top: 150px;
 `;
 const Destination = styled.div`
@@ -50,6 +50,7 @@ const DetailButton = styled.button`
   border-radius: 20px;
   margin-left: 20px;
   border: 1px solid #fe4c40;
+  color: black;
 `;
 
 function Card() {
@@ -99,6 +100,7 @@ function Card() {
         style={{
           padding: '15px',
           justifyContent: 'flex-end',
+          color: 'gray',
         }}
       >
         <p>평균 123,456원</p>
