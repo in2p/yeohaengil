@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import '../styles/globals.css';
 import { PiAirplaneTiltLight, PiWalletBold } from 'react-icons/pi';
@@ -17,11 +16,6 @@ const Destination = styled.div`
   padding: 0px 5px;
   background: #eee;
   font-size: 12px;
-`;
-
-const FlexBox = styled.div`
-  display: flex;
-  align-items: center;
 `;
 
 const Day = styled.div`
@@ -58,17 +52,17 @@ function Card() {
     <Box>
       {/* 강원도 강릉 과 날짜 */}
       <Destination>
-        <FlexBox>
+        <div className="d-flex">
           <PiAirplaneTiltLight style={{ fontSize: '20px' }} />
           <p>강원도 강릉</p>
-        </FlexBox>
-        <FlexBox>
+        </div>
+        <div className="d-flex">
           <FaRegCalendarAlt style={{ fontSize: '20px', marginRight: '5px' }} />
           <p>2023.12.14 ~ 2023.12.16</p>
-        </FlexBox>
+        </div>
       </Destination>
       {/* Day1, Day2, ... */}
-      <FlexBox style={{ overflow: 'hidden' }}>
+      <div className="d-flex" style={{ overflow: 'hidden' }}>
         <Day style={{ background: '#FE4C40', color: 'white' }}>
           <PiWalletBold style={{ fontSize: '15px', margin: '0px' }} />
           <p style={{ margin: '0px' }}>Day1</p>
@@ -81,22 +75,23 @@ function Card() {
           <PiWalletBold style={{ fontSize: '15px', margin: '0px' }} />
           <p style={{ margin: '0px' }}>Day3</p>
         </Day>
-      </FlexBox>
+      </div>
       <div style={{ overflow: 'hidden' }}>
-        <FlexBox style={{ width: '300vw' }}>
+        <div className="d-flex" style={{ width: '300vw' }}>
           {items.map(a => (
-            <FlexBox>
+            <div className="d-flex">
               <div className="content-img" />
               <div className="content-column">
                 <h3>원루프랩 사당점</h3>
                 <p>카페</p>
                 <p>예상 8000원</p>
               </div>
-            </FlexBox>
+            </div>
           ))}
-        </FlexBox>
+        </div>
       </div>
-      <FlexBox
+      <div
+        className="d-flex"
         style={{
           padding: '15px',
           justifyContent: 'flex-end',
@@ -105,7 +100,7 @@ function Card() {
       >
         <p>평균 123,456원</p>
         <DetailButton>일정 상세보기</DetailButton>
-      </FlexBox>
+      </div>
     </Box>
   );
 }

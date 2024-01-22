@@ -5,6 +5,16 @@
     border-radius: 10px;
     margin: 10px 10px 10px 20px;
 }
+.d-flex{
+    display: flex;
+    align-items: center;
+}
+
+.flex-between{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
 /* Card.js */
 .content-column{
