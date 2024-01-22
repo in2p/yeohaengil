@@ -35,9 +35,9 @@ const items = [
     { title: '원루프랩 수원점', category: '숙소', price: '118000원' },
   ],
   [
-    { title: '원루프랩 사당점', category: '카페', price: '8000원' },
-    { title: '원루프랩 강남점', category: '식당', price: '18000원' },
-    { title: '원루프랩 수원점', category: '숙소', price: '118000원' },
+    { title: '스타벅스 사당점', category: '카페', price: '8000원' },
+    { title: '스타벅스 강남점', category: '식당', price: '18000원' },
+    { title: '스타벅스 수원점', category: '숙소', price: '118000원' },
   ],
 ];
 
@@ -51,7 +51,6 @@ const DetailButton = styled.button`
 `;
 
 function Card() {
-  const dayLength = items.length;
   const [day, setDay] = useState(1);
 
   return (
@@ -70,7 +69,7 @@ function Card() {
       {/* Day1, Day2, ... */}
       <div className="d-flex" style={{ overflow: 'hidden' }}>
         {items.map((a, i) => {
-          if (i + 1 === day) {
+          if (i === day - 1) {
             return (
               <Day className="bg-main-color">
                 <PiWalletBold style={{ fontSize: '15px', margin: '0px' }} />
@@ -93,13 +92,13 @@ function Card() {
       </div>
       <div style={{ overflow: 'hidden' }}>
         <div className="d-flex" style={{ width: '300vw' }}>
-          {items.map((a, i) => (
+          {items[day - 1].map((a, i) => (
             <div className="d-flex" key={{ i }}>
               <div className="content-img" />
               <div className="content-column">
                 <h3>{a.title}</h3>
                 <p>{a.category}</p>
-                <p>예상 {a.price}원</p>
+                <p>예상 {a.price}</p>
               </div>
             </div>
           ))}
