@@ -1,3 +1,5 @@
+
+/* img css */
 .content-img{
     width: 80px;
     height: 80px;
@@ -5,15 +7,52 @@
     border-radius: 10px;
     margin: 10px 10px 10px 20px;
 }
+
+/* flex css */
 .d-flex{
     display: flex;
     align-items: center;
 }
 
-.flex-between{
+.d-flex-column{
     display: flex;
     align-items: center;
+    flex-direction: column;
+}
+
+.flex-between{
     justify-content: space-between;
+}
+
+.flex-center{
+    justify-content: center;
+}
+
+.align-start{
+    align-items: start;
+}
+
+
+/* font-css */
+.font-small{
+    font-size: 12px;
+}
+
+/* margin css */
+.mg-0{
+    margin:0px;
+}
+
+.mt-3{
+    margin-top:3px;
+}
+
+.mb-0{
+    margin-bottom: 0px;
+}
+
+.mb-10{
+    margin-bottom: 10px;
 }
 
 /* Card.js */

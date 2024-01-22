@@ -74,8 +74,8 @@ function Card() {
       </div>
       <div style={{ overflow: 'hidden' }}>
         <div className="d-flex" style={{ width: '300vw' }}>
-          {items.map(a => (
-            <div className="d-flex">
+          {items.map((a, i) => (
+            <div className="d-flex" key={{ i }}>
               <div className="content-img" />
               <div className="content-column">
                 <h3>원루프랩 사당점</h3>
