@@ -28,10 +28,6 @@ const Day = styled.div`
   border-radius: 10px;
   padding: 7px;
 `;
-const FlexColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
 const items = [
   { title: '원루프랩 사당점', category: '카페', price: '8000원' },
   { title: '원루프랩 강남점', category: '식당', price: '18000원' },
