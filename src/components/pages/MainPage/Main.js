@@ -1,6 +1,6 @@
 import Card from '../../organisms/Card.js';
 import './main.css';
-import RecordedTravels from '../../molecules/RecordedTravels/RecoredTravels.jsx';
+import RecordedTravels from '../../molecules/RecordedTravels/RecordedTravels.jsx';
 
 function Main() {
   return (
