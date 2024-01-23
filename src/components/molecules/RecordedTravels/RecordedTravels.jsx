@@ -33,7 +33,7 @@ const recordedTrip = [
   },
 ];
 
-function TravelMainView() {
+function RecordedTravels() {
   const [isDetail, setIsDetail] = useState(false);
   return (
     <div style={{ marginTop: '15px' }}>
@@ -85,4 +85,4 @@ function TravelMainView() {
     </div>
   );
 }
-export default TravelMainView;
+export default RecordedTravels;
