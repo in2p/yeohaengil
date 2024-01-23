@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import Destination from '../molecules/Destination/Destination.jsx';
 import DayButton from '../atoms/DayButton/DayButton.jsx';
 import DayItem from '../molecules/DayItem/DayItem.jsx';
+import DayContents from '../molecules/DayContents/DayContents.jsx';
 
 const Box = styled.div`
   width: 100%;
@@ -46,20 +47,11 @@ function Card() {
       <Destination />
       {/* Day1, Day2, ... */}
       <DayItem length={items.length} />
+
       <div style={{ overflow: 'hidden' }}>
-        <div className="d-flex" style={{ width: '300vw' }}>
-          {items[day - 1].map((a, i) => (
-            <div className="d-flex" key={{ i }}>
-              <div className="content-img" />
-              <div className="content-column">
-                <h3>{a.title}</h3>
-                <p>{a.category}</p>
-                <p>예상 {a.price}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <DayContents contents={items[day - 1]} />
       </div>
+
       <div
         className="d-flex"
         style={{
