@@ -1,6 +1,6 @@
 import { useState, React } from 'react';
 import styled from 'styled-components';
-import '../styles/globals.css';
+import '../../styles/globals.css';
 import { IoMdGrid, IoIosArrowForward } from 'react-icons/io';
 import { MdViewHeadline } from 'react-icons/md';
 

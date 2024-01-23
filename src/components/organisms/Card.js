@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import '../styles/globals.css';
-import { PiAirplaneTiltLight, PiWalletBold } from 'react-icons/pi';
+import '../../styles/globals.css';
+import { PiAirplaneTiltLight } from 'react-icons/pi';
 import { FaRegCalendarAlt } from 'react-icons/fa';
 import { useState } from 'react';
+import DayButton from '../atoms/DayButton/DayButton.jsx';
 
 const Box = styled.div`
   width: 100%;
@@ -19,15 +20,6 @@ const Destination = styled.div`
   font-size: 12px;
 `;
 
-const Day = styled.div`
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-  font-size: 12px;
-  margin: 5px;
-  border-radius: 10px;
-  padding: 7px;
-`;
 const items = [
   [
     { title: '원루프랩 사당점', category: '카페', price: '8000원' },
@@ -70,23 +62,16 @@ function Card() {
       <div className="d-flex" style={{ overflow: 'hidden' }}>
         {items.map((a, i) => {
           if (i === day - 1) {
-            return (
-              <Day className="bg-main-color">
-                <PiWalletBold style={{ fontSize: '15px', margin: '0px' }} />
-                <p style={{ margin: '0px' }}>Day{i + 1}</p>
-              </Day>
-            );
+            return <DayButton day={i + 1} className="bg-main-color" />;
           }
           return (
-            <Day
+            <DayButton
+              day={i + 1}
               className="bg-default-color"
               onClick={() => {
                 setDay(i + 1);
               }}
-            >
-              <PiWalletBold style={{ fontSize: '15px', margin: '0px' }} />
-              <p style={{ margin: '0px' }}>Day{i + 1}</p>
-            </Day>
+            />
           );
         })}
       </div>

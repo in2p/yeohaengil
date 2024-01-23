@@ -1,6 +1,6 @@
-import Card from '../../components/Card.js';
+import Card from '../../components/organisms/Card.js';
 import './main.css';
-import TravelMainView from '../../components/TravelMainView.jsx';
+import TravelMainView from '../../components/organisms/TravelMainView.jsx';
 
 function Main() {
   return (
