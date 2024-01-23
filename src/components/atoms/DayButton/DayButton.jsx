@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+import { UseDispatch, useDispatch } from 'react-redux';
 import '../../../styles/globals.css';
 import { PiWalletBold } from 'react-icons/pi';
+import { setDay } from '../../../store.jsx';
 
 const Day = styled.button`
   display: flex;
@@ -14,8 +16,14 @@ const Day = styled.button`
 `;
 
 function DayButton({ day, bgColor }) {
+  const dispatch = useDispatch();
   return (
-    <Day className={bgColor}>
+    <Day
+      className={bgColor}
+      onClick={() => {
+        dispatch(setDay(day));
+      }}
+    >
       <PiWalletBold style={{ fontSize: '15px', margin: '0px' }} />
       <p style={{ margin: '0px' }}>Day{day}</p>
     </Day>
