@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import '../../styles/globals.css';
+import '../../../styles/globals.css';
 import {
   LuImagePlus,
   LuPlane,

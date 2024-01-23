@@ -2,8 +2,11 @@ import styled from 'styled-components';
 import '../../styles/globals.css';
 
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import Destination from '../molecules/Destination/Destination.jsx';
 import DayButton from '../atoms/DayButton/DayButton.jsx';
+import DayItem from '../molecules/DayItem/DayItem.jsx';
 
 const Box = styled.div`
   width: 100%;
@@ -36,20 +39,13 @@ const DetailButton = styled.button`
 `;
 
 function Card() {
-  const [day, setDay] = useState(1);
+  const day = useSelector(state => state.day);
   return (
     <Box>
       {/* 강원도 강릉 과 날짜 */}
       <Destination />
       {/* Day1, Day2, ... */}
-      <div className="d-flex" style={{ overflow: 'hidden' }}>
-        {items.map((a, i) => {
-          if (i === day - 1) {
-            return <DayButton bgColor="bg-main-color" day={i + 1} />;
-          }
-          return <DayButton day={i + 1} bgColor="bg-default-color" />;
-        })}
-      </div>
+      <DayItem length={items.length} />
       <div style={{ overflow: 'hidden' }}>
         <div className="d-flex" style={{ width: '300vw' }}>
           {items[day - 1].map((a, i) => (

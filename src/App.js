@@ -11,8 +11,8 @@ import {
 import Header from './components/common/Header/Header.jsx';
 import Footer from './components/common/Footer/Footer.jsx';
 
-import Main from './pages/MainPage/Main.js';
-import WritePage from './pages/WriterPage/WritePage.jsx';
+import Main from './components/pages/MainPage/Main.js';
+import WritePage from './components/pages/WriterPage/WritePage.jsx';
 
 function App() {
   return (
