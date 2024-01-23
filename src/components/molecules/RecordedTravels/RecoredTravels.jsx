@@ -1,28 +1,17 @@
 import { useState, React } from 'react';
 import styled from 'styled-components';
-import '../../styles/globals.css';
+import '../../../styles/globals.css';
 import { IoMdGrid, IoIosArrowForward } from 'react-icons/io';
 import { MdViewHeadline } from 'react-icons/md';
-
-const CircleBox = styled.div`
-  width: 50px;
-  height: 50px;
-  border-radius: 30px;
-  margin-bottom: 0px;
-  border: 1px solid #fe4c40;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-`;
+import CircleBox from '../../atoms/CircleBox/CircleBox.jsx';
 
 const TripView = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-right: 15px;
   justify-content: center;
+  margin-right: 15px;
 `;
-
 const recordedTrip = [
   {
     img_url:
@@ -73,11 +62,7 @@ function TravelMainView() {
           <div className="d-flex">
             {recordedTrip.map((t, i) => (
               <TripView key={{ i }}>
-                <CircleBox
-                  style={{
-                    backgroundImage: `url("${t.img_url}")`,
-                  }}
-                />
+                <CircleBox img={t.img_url} />
                 <p className="font-small mt-3 mb-0">{t.location}</p>
               </TripView>
             ))}
@@ -86,13 +71,8 @@ function TravelMainView() {
           <div>
             {recordedTrip.map((t, i) => (
               <div className="d-flex mb-10" key={{ i }}>
-                <CircleBox
-                  style={{
-                    marginRight: '15px',
-                    backgroundImage: `url("${t.img_url}")`,
-                  }}
-                />
-                <div className="d-flex-column flex-center align-start ">
+                <CircleBox img={t.img_url} />
+                <div className="d-flex-column flex-center align-start ml-5 ">
                   <p className="font-small mg-0">{t.location}</p>
                   <p className="font-small mg-0">{t.date}</p>
                 </div>

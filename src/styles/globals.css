@@ -64,6 +64,9 @@
     margin-bottom: 10px;
 }
 
+.ml-5{
+    margin-left: 5px;
+}
 /* Card.js */
 .content-column{
     height: 60px;
