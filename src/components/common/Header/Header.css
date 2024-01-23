@@ -1,8 +1,10 @@
 .headerContainer {
     position: sticky;
-    top: 15px; /*상단고정*/
+    top: 0px; /*상단고정*/
     left: 0;
     right: 0;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .headerLogo {
