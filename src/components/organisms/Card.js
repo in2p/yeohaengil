@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import '../../styles/globals.css';
-import { PiAirplaneTiltLight } from 'react-icons/pi';
-import { FaRegCalendarAlt } from 'react-icons/fa';
+
 import { useState } from 'react';
+import Destination from '../molecules/Destination/Destination.jsx';
 import DayButton from '../atoms/DayButton/DayButton.jsx';
 
 const Box = styled.div`
@@ -11,13 +11,6 @@ const Box = styled.div`
   border-radius: 15px;
   box-shadow: 0px 3px 5px 0px #888888;
   padding-top: 150px;
-`;
-const Destination = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 0px 5px;
-  background: #eee;
-  font-size: 12px;
 `;
 
 const items = [
@@ -44,35 +37,17 @@ const DetailButton = styled.button`
 
 function Card() {
   const [day, setDay] = useState(1);
-
   return (
     <Box>
       {/* 강원도 강릉 과 날짜 */}
-      <Destination>
-        <div className="d-flex">
-          <PiAirplaneTiltLight style={{ fontSize: '20px' }} />
-          <p>강원도 강릉</p>
-        </div>
-        <div className="d-flex">
-          <FaRegCalendarAlt style={{ fontSize: '20px', marginRight: '5px' }} />
-          <p>2023.12.14 ~ 2023.12.16</p>
-        </div>
-      </Destination>
+      <Destination />
       {/* Day1, Day2, ... */}
       <div className="d-flex" style={{ overflow: 'hidden' }}>
         {items.map((a, i) => {
           if (i === day - 1) {
-            return <DayButton day={i + 1} className="bg-main-color" />;
+            return <DayButton bgColor="bg-main-color" day={i + 1} />;
           }
-          return (
-            <DayButton
-              day={i + 1}
-              className="bg-default-color"
-              onClick={() => {
-                setDay(i + 1);
-              }}
-            />
-          );
+          return <DayButton day={i + 1} bgColor="bg-default-color" />;
         })}
       </div>
       <div style={{ overflow: 'hidden' }}>

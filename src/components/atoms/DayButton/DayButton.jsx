@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import '../../../styles/globals.css';
 import { PiWalletBold } from 'react-icons/pi';
 
-const Day = styled.div`
+const Day = styled.button`
   display: flex;
   align-items: center;
   font-weight: bold;
@@ -10,11 +10,12 @@ const Day = styled.div`
   margin: 5px;
   border-radius: 10px;
   padding: 7px;
+  border: 0px;
 `;
 
-function DayButton({ day }) {
+function DayButton({ day, bgColor }) {
   return (
-    <Day className="bg-main-color">
+    <Day className={bgColor}>
       <PiWalletBold style={{ fontSize: '15px', margin: '0px' }} />
       <p style={{ margin: '0px' }}>Day{day}</p>
     </Day>
