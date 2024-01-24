@@ -54,14 +54,20 @@ function RecordedTravels() {
           />
         )}
       </div>
-      <div className="d-flex flex-between">
-        {!isDetail ? (
-          <CirclesView travels={recordedTrip} />
-        ) : (
-          <CirclesListView travels={recordedTrip} />
-        )}
-        {!isDetail && <IoIosArrowForward style={{ fontSize: '20px' }} />}
-      </div>
+      {recordedTrip.length > 0 ? (
+        <div className="d-flex flex-between">
+          {!isDetail ? (
+            <CirclesView travels={recordedTrip} />
+          ) : (
+            <CirclesListView travels={recordedTrip} />
+          )}
+          {!isDetail && <IoIosArrowForward style={{ fontSize: '20px' }} />}
+        </div>
+      ) : (
+        <div style={{ textAlign: 'center', color: 'gray' }}>
+          <p>여행을 기록해 보아요.</p>
+        </div>
+      )}
     </div>
   );
 }

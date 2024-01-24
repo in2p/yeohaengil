@@ -41,29 +41,39 @@ const DetailButton = styled.button`
 
 function TravelCard() {
   const day = useSelector(state => state.day);
-  return (
-    <Box>
-      {/* 강원도 강릉 과 날짜 */}
-      <Destination />
-      {/* Day1, Day2, ... */}
-      <DayItem length={items.length} />
-      {/* Day1 의 일정들 */}
-      <div style={{ overflow: 'hidden' }}>
-        <DayContents contents={items[day - 1]} />
-      </div>
+  if (items.length < 0) {
+    return (
+      <Box>
+        {/* 강원도 강릉 과 날짜 */}
+        <Destination />
+        {/* Day1, Day2, ... */}
+        <DayItem length={items.length} />
+        {/* Day1 의 일정들 */}
+        <div style={{ overflow: 'hidden' }}>
+          <DayContents contents={items[day - 1]} />
+        </div>
 
-      <div
-        className="d-flex"
-        style={{
-          padding: '15px',
-          justifyContent: 'flex-end',
-          color: 'gray',
-        }}
-      >
-        <p>평균 123,456원</p>
-        <DetailButton>일정 상세보기</DetailButton>
-      </div>
-    </Box>
+        <div
+          className="d-flex"
+          style={{
+            padding: '15px',
+            justifyContent: 'flex-end',
+            color: 'gray',
+          }}
+        >
+          <p>평균 123,456원</p>
+          <DetailButton>일정 상세보기</DetailButton>
+        </div>
+      </Box>
+    );
+  }
+  return (
+    <div
+      className="d-flex flex-center"
+      style={{ height: '350px', color: 'gray' }}
+    >
+      <p>여행을 기록해 보아요.</p>
+    </div>
   );
 }
 export default TravelCard;
