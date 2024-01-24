@@ -1,17 +1,14 @@
 import { useState, React } from 'react';
 import styled from 'styled-components';
-import '../../../styles/globals.css';
+
 import { IoMdGrid, IoIosArrowForward } from 'react-icons/io';
 import { MdViewHeadline } from 'react-icons/md';
-import CircleBox from '../../atoms/CircleBox/CircleBox.jsx';
 
-const TripView = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
-  margin-right: 15px;
-`;
+import '../../../styles/globals.css';
+
+import CirclesListView from '../../molecules/CirclesListView/CirclesListView.jsx';
+import CirclesView from '../../molecules/CirclesView/CirclesView.jsx';
+
 const recordedTrip = [
   {
     img_url:
@@ -59,26 +56,9 @@ function RecordedTravels() {
       </div>
       <div className="d-flex flex-between">
         {!isDetail ? (
-          <div className="d-flex">
-            {recordedTrip.map((t, i) => (
-              <TripView key={{ i }}>
-                <CircleBox img={t.img_url} />
-                <p className="font-small mt-3 mb-0">{t.location}</p>
-              </TripView>
-            ))}
-          </div>
+          <CirclesView travels={recordedTrip} />
         ) : (
-          <div>
-            {recordedTrip.map((t, i) => (
-              <div className="d-flex mb-10" key={{ i }}>
-                <CircleBox img={t.img_url} />
-                <div className="d-flex-column flex-center align-start ml-5 ">
-                  <p className="font-small mg-0">{t.location}</p>
-                  <p className="font-small mg-0">{t.date}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <CirclesListView travels={recordedTrip} />
         )}
         {!isDetail && <IoIosArrowForward style={{ fontSize: '20px' }} />}
       </div>

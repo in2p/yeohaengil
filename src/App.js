@@ -8,8 +8,8 @@ import {
   BrowserRouter,
 } from 'react-router-dom';
 
-import Header from './components/common/Header/Header.jsx';
-import Footer from './components/common/Footer/Footer.jsx';
+import Header from './components/organisms/Header/Header.jsx';
+import Footer from './components/organisms/Footer/Footer.jsx';
 
 import Main from './components/pages/MainPage/Main.js';
 import WritePage from './components/pages/WriterPage/WritePage.jsx';

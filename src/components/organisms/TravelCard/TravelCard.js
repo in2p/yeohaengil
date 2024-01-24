@@ -1,13 +1,13 @@
 import styled from 'styled-components';
-import '../../styles/globals.css';
+import '../../../styles/globals.css';
 
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import Destination from '../molecules/Destination/Destination.jsx';
-import DayButton from '../atoms/DayButton/DayButton.jsx';
-import DayItem from '../molecules/DayItem/DayItem.jsx';
-import DayContents from '../molecules/DayContents/DayContents.jsx';
+import Destination from '../../molecules/Destination/Destination.jsx';
+import DayButton from '../../atoms/DayButton/DayButton.jsx';
+import DayItem from '../../molecules/DayItem/DayItem.jsx';
+import DayContents from '../../molecules/DayContents/DayContents.jsx';
 
 const Box = styled.div`
   width: 100%;
@@ -39,7 +39,7 @@ const DetailButton = styled.button`
   color: black;
 `;
 
-function Card() {
+function TravelCard() {
   const day = useSelector(state => state.day);
   return (
     <Box>
@@ -47,7 +47,7 @@ function Card() {
       <Destination />
       {/* Day1, Day2, ... */}
       <DayItem length={items.length} />
-
+      {/* Day1 의 일정들 */}
       <div style={{ overflow: 'hidden' }}>
         <DayContents contents={items[day - 1]} />
       </div>
@@ -66,4 +66,4 @@ function Card() {
     </Box>
   );
 }
-export default Card;
+export default TravelCard;
