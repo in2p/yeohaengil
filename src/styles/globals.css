@@ -8,6 +8,12 @@
     background-color: #eee;
     color: black;
 }
+
+/* size */
+.w-100{
+    width: 100%;
+}
+
 /* img css */
 .content-img{
     width: 80px;
@@ -55,6 +61,9 @@
 .mt-3{
     margin-top:3px;
 }
+.mt-15{
+    margin-top: 10px;
+}
 
 .mb-0{
     margin-bottom: 0px;
@@ -67,6 +76,16 @@
 .ml-5{
     margin-left: 5px;
 }
+
+.ml-10{
+    margin-left: 10px;
+}
+
+/* float */
+.float-right{
+    float:right;
+}
+
 /* Card.js */
 .content-column{
     height: 60px;

@@ -13,6 +13,7 @@ import Footer from './components/organisms/Footer/Footer.jsx';
 
 import Main from './components/pages/MainPage/Main.js';
 import WritePage from './components/pages/WriterPage/WritePage.jsx';
+import MessageListPage from './components/pages/MessageListPage/MessageListPage.jsx';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/write" element={<WritePage />} />
+            <Route path="/messages" element={<MessageListPage />} />
           </Routes>
         </div>
         <Footer />
