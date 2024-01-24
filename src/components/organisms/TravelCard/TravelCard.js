@@ -41,7 +41,7 @@ const DetailButton = styled.button`
 
 function TravelCard() {
   const day = useSelector(state => state.day);
-  if (items.length < 0) {
+  if (items.length > 0) {
     return (
       <Box>
         {/* 강원도 강릉 과 날짜 */}
