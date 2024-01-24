@@ -10,36 +10,42 @@ import {
   LuXCircle,
   LuMap,
 } from 'react-icons/lu';
+import { useState } from 'react';
+import { PiTrendUp } from 'react-icons/pi';
+import UploadModal from './UploadModal.jsx';
 
 function WritePage() {
+  const [uploadModal, setUploadModal] = useState(false);
+
   return (
     <div className="writeWrapper">
       <UploadImgContainer>
         <LuImagePlus style={{ fontSize: '20px' }} />
       </UploadImgContainer>
-      <FelxBox>
+      <FlexBox>
         <IconContainer>
           <LuPlane style={{ fontSize: '20px', color: 'white' }} />
         </IconContainer>
         <WrtieText>지역</WrtieText>
-      </FelxBox>
-      <FelxBox>
+      </FlexBox>
+      <FlexBox>
         <IconContainer>
           <LuCalendarDays style={{ fontSize: '20px', color: 'white' }} />
         </IconContainer>
         <WrtieText>년/월/일</WrtieText>
-      </FelxBox>
-      <FelxBox>
+      </FlexBox>
+      <FlexBox>
         <Day style={{ background: '#FE4C40', color: 'white' }}>
           <LuWallet style={{ fontSize: '15px', margin: '0px' }} />
           <p style={{ margin: '0px' }}>Day1</p>
         </Day>
         <TripDate>12.25</TripDate>
-      </FelxBox>
+      </FlexBox>
+      {/* 예상비용 어떻게 배치해야할지 필요 */}
       <WrtieText style={{ float: 'right', display: 'block', margin: '0 40px' }}>
         예상비용 | 실제비용
       </WrtieText>
-      <FelxBox>
+      <FlexBox>
         <PlanContainer>
           <LuAlignJustify style={{ fontSize: '15px' }} />
           <Circle>1</Circle>
@@ -72,18 +78,22 @@ function WritePage() {
             style={{ marginLeft: '3px', fontSize: '15px', color: 'gray' }}
           />
         </PlanContainer>
-      </FelxBox>
+      </FlexBox>
       <AddPlace style={{ color: 'black' }}>
         <p style={{ margin: '0px' }}>장소 추가</p>
       </AddPlace>
-      <FelxBox>
-        <PostButton style={{ background: '#FE4C40', color: 'white' }}>
+      <FlexBox>
+        <PostButton
+          style={{ background: '#FE4C40', color: 'white' }}
+          onClick={() => setUploadModal(true)}
+        >
           <p style={{ margin: '0px' }}>발행하기</p>
         </PostButton>
+        {uploadModal === true ? <UploadModal /> : null}
         <MapCircle>
           <LuMap style={{ fontSize: '30px' }} />
         </MapCircle>
-      </FelxBox>
+      </FlexBox>
     </div>
   );
 }
@@ -100,7 +110,7 @@ const UploadImgContainer = styled.div`
   align-items: center;
 `;
 
-const FelxBox = styled.div`
+const FlexBox = styled.div`
   display: flex;
 `;
 
@@ -186,7 +196,7 @@ const AddPlace = styled.div`
   padding: 7px;
 `;
 
-const PostButton = styled.div`
+const PostButton = styled.button`
   font-weight: bold;
   font-size: 15px;
   border-radius: 13px;
@@ -198,6 +208,7 @@ const PostButton = styled.div`
     -50%
   ); /* 버튼을 너비의 절반만큼 뒤로 이동하여 효과적으로 수평 중앙에 배치 */
   bottom: 80px;
+  border: none;
 `;
 
 const MapCircle = styled.div`
@@ -215,5 +226,5 @@ const MapCircle = styled.div`
 
   position: fixed;
   bottom: 80px;
-  right: 30%;
+  right: 35%;
 `;
