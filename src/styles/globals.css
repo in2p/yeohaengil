@@ -1,14 +1,94 @@
+/* color */
+.bg-main-color{
+    background-color: #FE4C40;
+    color: white;
+}
+
+.bg-default-color{
+    background-color: #eee;
+    color: black;
+}
+
+/* size */
+.w-100{
+    width: 100%;
+}
+
+/* img css */
 .content-img{
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     background: #eee;
     border-radius: 10px;
     margin: 10px 10px 10px 20px;
 }
 
+/* flex css */
+.d-flex{
+    display: flex;
+    align-items: center;
+}
+
+.d-flex-column{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.flex-between{
+    justify-content: space-between;
+}
+
+.flex-center{
+    justify-content: center;
+}
+
+.align-start{
+    align-items: start;
+}
+
+
+/* font-css */
+.font-small{
+    font-size: 12px;
+}
+
+/* margin css */
+.mg-0{
+    margin:0px;
+}
+
+.mt-3{
+    margin-top:3px;
+}
+.mt-15{
+    margin-top: 10px;
+}
+
+.mb-0{
+    margin-bottom: 0px;
+}
+
+.mb-10{
+    margin-bottom: 10px;
+}
+
+.ml-5{
+    margin-left: 5px;
+}
+
+.ml-10{
+    margin-left: 10px;
+}
+
+/* float */
+.float-right{
+    float:right;
+}
+
 /* Card.js */
 .content-column{
-    height: 80px;
+    height: 60px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
