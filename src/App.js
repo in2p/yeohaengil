@@ -13,6 +13,8 @@ import Footer from './components/common/Footer/Footer.jsx';
 
 import Main from './pages/MainPage/Main.js';
 import WritePage from './pages/WriterPage/WritePage.jsx';
+import SearchPage from './pages/SearchPage/SearchPage.jsx';
+import UploadModal from './pages/WriterPage/UploadModal.jsx';
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/write" element={<WritePage />} />
+            <Route path="/search" element={<UploadModal />} />
           </Routes>
         </div>
         <Footer />
