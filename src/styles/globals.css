@@ -39,6 +39,7 @@
     justify-content: space-between;
 }
 
+
 .flex-center{
     justify-content: center;
 }
@@ -47,6 +48,9 @@
     align-items: start;
 }
 
+.align-end{
+    align-items: end;
+}
 
 /* font-css */
 .font-small{
