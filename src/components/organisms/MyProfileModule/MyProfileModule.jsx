@@ -36,7 +36,7 @@ function MyProfileModule() {
     <ProfileWrapper>
       <ProfileLeftView>
         <h4 className="mb-10 wb-all">trip_wallet</h4>
-        <CircleBox size="80px" />
+        <CircleBox size="80px" border="none" />
       </ProfileLeftView>
       <ProfileRightView>
         <div className="d-flex flex-around w-80">
