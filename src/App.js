@@ -16,6 +16,7 @@ import UploadModal from './components/pages/WriterPage/UploadModal.jsx';
 import Main from './components/pages/MainPage/Main.js';
 import WritePage from './components/pages/WriterPage/WritePage.jsx';
 import MessageListPage from './components/pages/MessageListPage/MessageListPage.jsx';
+import MyPage from './components/pages/MyPage/MyPage.js';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/write" element={<WritePage />} />
             <Route path="/search" element={<UploadModal />} />
             <Route path="/messages" element={<MessageListPage />} />
+            <Route path="/mypage" element={<MyPage />} />
           </Routes>
         </div>
         <Footer />
