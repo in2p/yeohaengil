@@ -45,7 +45,9 @@ function MyProfileModule() {
           <MyInfoModule title="팔로잉" number="903" />
         </div>
         <div className="d-flex flex-center mt-15">
-          <RectButton width="85px">프로필 편집</RectButton>
+          <RectButton width="85px" $primary>
+            프로필 편집
+          </RectButton>
           <RectButton width="85px">메시지</RectButton>
           <RectButton>
             <CiSettings className="font-medium" />

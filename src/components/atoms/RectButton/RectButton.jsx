@@ -4,17 +4,25 @@ import styled from 'styled-components';
 import '../../../styles/globals.css';
 
 const RectWrapper = styled.button`
+  background: ${props => (props.$primary ? '#FE4C40' : 'white')};
+  color: ${props => (props.$primary ? 'white' : 'black')};
+  border: ${props => (props.$primary ? 'none' : '1.5px solid #eee')};
   width: ${props => props.width};
   height: 25px;
   text-align: center;
   font-size: 12px;
-  background-color: white;
-  border: 1.5px solid #eee;
   border-radius: 3px;
   margin: 1px;
 `;
 
-function RectButton({ children, width }) {
-  return <RectWrapper width={width}>{children}</RectWrapper>;
+function RectButton({ children, width, $primary }) {
+  if (!$primary) {
+    return <RectWrapper width={width}>{children}</RectWrapper>;
+  }
+  return (
+    <RectWrapper width={width} $primary>
+      {children}
+    </RectWrapper>
+  );
 }
 export default RectButton;
