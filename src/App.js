@@ -16,7 +16,7 @@ import UploadModal from './components/pages/WriterPage/UploadModal.jsx';
 import Main from './components/pages/MainPage/Main.js';
 import WritePage from './components/pages/WriterPage/WritePage.jsx';
 import MessageListPage from './components/pages/MessageListPage/MessageListPage.jsx';
-import MyPage from './components/pages/MyPage/MyPage.js';
+import MyPage from './components/pages/MyPage/MyPage.jsx';
 
 function App() {
   return (

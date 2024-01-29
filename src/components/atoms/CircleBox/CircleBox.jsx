@@ -5,7 +5,6 @@ const CircleContainer = styled.div`
   border-radius: 100px;
   margin-bottom: 0px;
   background-size: cover;
-  background-color: 
   background-position: center;
   background-repeat: no-repeat;
   width: ${props => props.size};

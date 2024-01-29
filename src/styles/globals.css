@@ -67,6 +67,10 @@
 }
 
 /* font-css */
+.font-xsmall{
+    font-size: 8px;
+}
+
 .font-small{
     font-size: 12px;
 }
