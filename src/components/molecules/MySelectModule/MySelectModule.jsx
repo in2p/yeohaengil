@@ -19,11 +19,11 @@ const IconWrapper = styled.div`
   color: ${props => (props.$selected ? '#FE4C40' : 'black')};
 `;
 
-function MySelectModule({ select }) {
-  if (select === 'right')
+function MySelectModule({ select, handleSelect }) {
+  if (select === false)
     return (
       <SelectWrapper>
-        <IconWrapper>
+        <IconWrapper onClick={handleSelect}>
           <IoMdGrid />
         </IconWrapper>
         <IconWrapper $selected>
@@ -36,7 +36,7 @@ function MySelectModule({ select }) {
       <IconWrapper $selected>
         <IoMdGrid />
       </IconWrapper>
-      <IconWrapper>
+      <IconWrapper onClick={handleSelect}>
         <IoMdHeartEmpty />
       </IconWrapper>
     </SelectWrapper>
