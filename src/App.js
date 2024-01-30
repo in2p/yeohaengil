@@ -18,6 +18,8 @@ import WritePage from './components/pages/WriterPage/WritePage.jsx';
 import MessageListPage from './components/pages/MessageListPage/MessageListPage.jsx';
 import MyPage from './components/pages/MyPage/MyPage.jsx';
 import MapPage from './components/pages/MapPage/MapPage.jsx';
+import SettingsPage from './components/pages/SettingsPage/SettingsPage.jsx';
+import FollowPage from './components/pages/FollowPage/FollowPage.jsx';
 
 function App() {
   return (
@@ -31,7 +33,9 @@ function App() {
             <Route path="/search" element={<UploadModal />} />
             <Route path="/messages" element={<MessageListPage />} />
             <Route path="/mypage" element={<MyPage />} />
+            <Route path="follow" element={<FollowPage />} />
             <Route path="/map" element={<MapPage />} />
+            <Route path="/setting" element={<SettingsPage />} />
           </Routes>
         </div>
         <Footer />

@@ -10,8 +10,9 @@ const MapContainer = styled.div`
 `;
 
 const MapWrapper = styled.div`
+  margin-top: 5px;
   background-color: #eee;
-  height: 70vh;
+  height: 65vh;
   border-radius: 15px;
 `;
 
