@@ -3,82 +3,6 @@ import styled from 'styled-components';
 
 import { AiFillCloseCircle } from 'react-icons/ai';
 
-function UploadModal() {
-  const [accomCost, setAccomCost] = useState();
-  const [transCost, setTransCost] = useState();
-  const [totalBudget, setTotalBudget] = useState(0);
-
-  const [openModal, setOpenModal] = useState(true);
-
-  // 숙박비와 교통비가 변경될 때마다 다시 계산
-  // parseFloat: 문자열 값을 숫자로 변환, 기본값 0
-  // toLocaleString(): 쉼표 지정
-  useEffect(() => {
-    const parsedAccomCost = parseFloat(accomCost) || 0;
-    const parsedTransCost = parseFloat(transCost) || 0;
-    const newTotalBudget = parsedAccomCost + parsedTransCost;
-    setTotalBudget(newTotalBudget);
-  }, [accomCost, transCost]);
-
-  return (
-    <Modal>
-      <ModalBody>
-        <CloseIcon onClick={() => setOpenModal(false)} />
-        <FlexBox>
-          <p style={{ marginTop: '35px' }}>공개 설정</p>
-        </FlexBox>
-        <FlexBox>
-          <p>숙소비를 포함해요</p>
-          <p
-            style={{
-              fontSize: '8px',
-              color: '#D1D1D1',
-              margin: '0 5px 0 15px',
-            }}
-          >
-            1인당
-          </p>
-
-          <TextBox>
-            <Input
-              type="number"
-              value={accomCost}
-              onChange={e => setAccomCost(e.target.value)}
-            />
-            <Placeholder>원</Placeholder>
-          </TextBox>
-        </FlexBox>
-        <FlexBox>
-          <p>교통비를 포함해요</p>
-          <p
-            style={{
-              fontSize: '8px',
-              color: '#D1D1D1',
-              margin: '0 5px 0 15px',
-            }}
-          >
-            1인당
-          </p>
-          <TextBox>
-            <Input
-              type="number"
-              value={transCost}
-              onChange={e => setTransCost(e.target.value)}
-            />
-            <Placeholder>원</Placeholder>
-          </TextBox>
-        </FlexBox>
-        <p style={{ fontSize: '15px', fontWeight: '800' }}>
-          총 예산 {totalBudget.toLocaleString()} 원
-        </p>
-        <UploadBtn>발행하기</UploadBtn>
-      </ModalBody>
-    </Modal>
-  );
-}
-
-export default UploadModal;
-
 const FlexBox = styled.div`
   display: flex;
   flex-direction: row;
@@ -161,3 +85,79 @@ const UploadBtn = styled.button`
 
   position: relative;
 `;
+
+function UploadModal() {
+  const [accomCost, setAccomCost] = useState();
+  const [transCost, setTransCost] = useState();
+  const [totalBudget, setTotalBudget] = useState(0);
+
+  const [openModal, setOpenModal] = useState(true);
+
+  // 숙박비와 교통비가 변경될 때마다 다시 계산
+  // parseFloat: 문자열 값을 숫자로 변환, 기본값 0
+  // toLocaleString(): 쉼표 지정
+  useEffect(() => {
+    const parsedAccomCost = parseFloat(accomCost) || 0;
+    const parsedTransCost = parseFloat(transCost) || 0;
+    const newTotalBudget = parsedAccomCost + parsedTransCost;
+    setTotalBudget(newTotalBudget);
+  }, [accomCost, transCost]);
+
+  return (
+    <Modal>
+      <ModalBody>
+        <CloseIcon onClick={() => setOpenModal(false)} />
+        <FlexBox>
+          <p style={{ marginTop: '35px' }}>공개 설정</p>
+        </FlexBox>
+        <FlexBox>
+          <p>숙소비를 포함해요</p>
+          <p
+            style={{
+              fontSize: '8px',
+              color: '#D1D1D1',
+              margin: '0 5px 0 15px',
+            }}
+          >
+            1인당
+          </p>
+
+          <TextBox>
+            <Input
+              type="number"
+              value={accomCost}
+              onChange={e => setAccomCost(e.target.value)}
+            />
+            <Placeholder>원</Placeholder>
+          </TextBox>
+        </FlexBox>
+        <FlexBox>
+          <p>교통비를 포함해요</p>
+          <p
+            style={{
+              fontSize: '8px',
+              color: '#D1D1D1',
+              margin: '0 5px 0 15px',
+            }}
+          >
+            1인당
+          </p>
+          <TextBox>
+            <Input
+              type="number"
+              value={transCost}
+              onChange={e => setTransCost(e.target.value)}
+            />
+            <Placeholder>원</Placeholder>
+          </TextBox>
+        </FlexBox>
+        <p style={{ fontSize: '15px', fontWeight: '800' }}>
+          총 예산 {totalBudget.toLocaleString()} 원
+        </p>
+        <UploadBtn>발행하기</UploadBtn>
+      </ModalBody>
+    </Modal>
+  );
+}
+
+export default UploadModal;
