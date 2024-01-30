@@ -17,6 +17,7 @@ import Main from './components/pages/MainPage/Main.js';
 import WritePage from './components/pages/WriterPage/WritePage.jsx';
 import MessageListPage from './components/pages/MessageListPage/MessageListPage.jsx';
 import MyPage from './components/pages/MyPage/MyPage.jsx';
+import MapPage from './components/pages/MapPage/MapPage.jsx';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/search" element={<UploadModal />} />
             <Route path="/messages" element={<MessageListPage />} />
             <Route path="/mypage" element={<MyPage />} />
+            <Route path="/map" element={<MapPage />} />
           </Routes>
         </div>
         <Footer />
