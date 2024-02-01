@@ -1,51 +1,45 @@
 import React from 'react';
-import styled from 'styled-components';
-
-import { LuSearch, LuFilter } from 'react-icons/lu';
+import SearchBox from '../../atoms/SearchBox/SearchBox.jsx';
+import SearhFilter from '../../atoms/SearhFilter/SearhFilter.jsx';
+import SearchCard from '../../organisms/SearchCard/SearchCard.jsx';
 
 function SearchPage() {
-  const FilterOption = [
-    { value: 'lastest', name: '최신순' },
-    { value: 'popular', name: '인기순' },
-    { value: 'highest', name: '높은평균순' },
-    { value: 'lowest', name: '낮은평균순' },
+  const userCards = [
+    {
+      user: 'user1',
+      img: 'https://images.unsplash.com/photo-1499591934245-40b55745b905?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      date: '2024-01-27 ~ 2024-01-29',
+      destination: '경기도 하남',
+      average: '123456',
+      like: '40',
+    },
+    {
+      user: 'user2',
+      img: 'https://images.unsplash.com/photo-1499591934245-40b55745b905?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      date: '2023-11-19 ~ 2023-11-22',
+      destination: '강원도 강릉',
+      average: '234567',
+      like: '1094만',
+    },
+    {
+      user: 'user3',
+      img: 'https://images.unsplash.com/photo-1499591934245-40b55745b905?q=80&w=1172&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      date: '2024-01-10 ~ 2024-01-15',
+      destination: '서울특별시 강남',
+      average: '345678',
+      like: '5K',
+    },
   ];
 
   return (
-    <SearchBox>
-      <LuSearch
-        style={{
-          fontSize: '20px',
-          position: 'absolute',
-          right: '70px',
-          border: 'none',
-          padding: '2px',
-        }}
-      />
-      <SearhFilter>
-        <LuFilter
-          style={{
-            fontSize: '20px',
-          }}
-        />
-      </SearhFilter>
-    </SearchBox>
+    <div className="SearchContainer">
+      <SearchBox />
+      <SearhFilter />
+      {userCards.map((userCard, i) => (
+        <SearchCard userURL={userCard} key={userCard.user} />
+      ))}
+    </div>
   );
 }
 
 export default SearchPage;
-
-const SearchBox = styled.div`
-  width: 240px;
-  height: 24px;
-  border: 0.7px solid #000;
-  border-radius: 10px;
-
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-`;
-
-const SearhFilter = styled.div`
-  display: flex;
-`;

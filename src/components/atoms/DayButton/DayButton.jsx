@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { UseDispatch, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import '../../../styles/globals.css';
 import { PiWalletBold } from 'react-icons/pi';
 import { setDay } from '../../../store.jsx';

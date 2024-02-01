@@ -12,10 +12,10 @@ import Header from './components/organisms/Header/Header.jsx';
 import Footer from './components/organisms/Footer/Footer.jsx';
 
 import SearchPage from './components/pages/SearchPage/SearchPage.jsx';
-import UploadModal from './components/pages/WriterPage/UploadModal.jsx';
 import Main from './components/pages/MainPage/Main.js';
 import WritePage from './components/pages/WriterPage/WritePage.jsx';
 import MessageListPage from './components/pages/MessageListPage/MessageListPage.jsx';
+import SettingPage1 from './components/pages/SettingPage/SettingPage1.jsx';
 
 function App() {
   return (
@@ -26,8 +26,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/write" element={<WritePage />} />
-            <Route path="/search" element={<UploadModal />} />
+            <Route path="/search" element={<SearchPage />} />
             <Route path="/messages" element={<MessageListPage />} />
+            <Route path="/setting" element={<SettingPage1 />} />
           </Routes>
         </div>
         <Footer />
