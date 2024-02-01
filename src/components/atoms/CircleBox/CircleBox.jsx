@@ -2,22 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 
 const CircleContainer = styled.div`
-  width: 50px;
-  height: 50px;
-  border-radius: 30px;
+  border-radius: 100px;
   margin-bottom: 0px;
-  border: 1px solid #fe4c40;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  width: ${props => props.size};
+  height: ${props => props.size};
+  border: ${props => props.border};
+  background-image: url('${props => props.img}');
+  background-color: lightgray;
 `;
-function CircleBox({ img }) {
-  return (
-    <CircleContainer
-      style={{
-        backgroundImage: `url("${img}")`,
-      }}
-    />
-  );
+
+function CircleBox({ img, size = '50px', border = '1px solid #fe4c40' }) {
+  return <CircleContainer size={size} border={border} img={img} />;
 }
 export default CircleBox;

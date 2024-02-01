@@ -18,7 +18,10 @@ function Message({ messageInfo }) {
       </div>
       <div className="float-right ">
         {messageInfo.notWatched > 0 ? (
-          <NumberAtom n={messageInfo.notWatched} />
+          <div className="d-flex-column align-end">
+            <p>{messageInfo.date}</p>
+            <NumberAtom n={messageInfo.notWatched} />
+          </div>
         ) : (
           <p>{messageInfo.date}</p>
         )}

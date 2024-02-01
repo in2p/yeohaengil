@@ -25,7 +25,7 @@ const HeaderLogo = styled.img`
 
 function Header() {
   const hideHeader = useLocation();
-
+  if (hideHeader.pathname === '/login') return null;
   // if (hideHeader.pathname === '/setting') return null;
   return (
     <HeaderContainer>

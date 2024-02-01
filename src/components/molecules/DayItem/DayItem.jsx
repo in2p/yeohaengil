@@ -7,9 +7,9 @@ function DayItem({ length }) {
 
   for (let i = 0; i < length; i += 1) {
     if (i === day - 1) {
-      jsxElements.push(<DayButton bgColor="bg-main-color" day={i + 1} />);
+      jsxElements.push(<DayButton bgColor="bg-main" day={i + 1} />);
     } else {
-      jsxElements.push(<DayButton day={i + 1} bgColor="bg-default-color" />);
+      jsxElements.push(<DayButton day={i + 1} bgColor="bg-default" />);
     }
   }
   return (

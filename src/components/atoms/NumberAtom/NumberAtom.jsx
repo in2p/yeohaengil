@@ -12,7 +12,7 @@ function NumberAtom({ n }) {
 
   return (
     <div
-      className="bg-main-color"
+      className="bg-main"
       style={{ borderRadius: '20px', padding: '0px 5px' }}
     >
       {value}
