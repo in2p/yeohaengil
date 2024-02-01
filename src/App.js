@@ -21,7 +21,6 @@ import FollowPage from './components/pages/FollowPage/FollowPage.jsx';
 import LoginPage from './components/pages/LoginPage/LoginPage.jsx';
 import SettingPage1 from './components/pages/SettingPage/SettingPage1.jsx';
 
-
 function App() {
   return (
     <BrowserRouter>
