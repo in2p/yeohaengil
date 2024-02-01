@@ -9,7 +9,9 @@ function DayItem({ length }) {
     if (i === day - 1) {
       jsxElements.push(<DayButton bgColor="bg-main" day={i + 1} />);
     } else {
-      jsxElements.push(<DayButton day={i + 1} bgColor="bg-default" />);
+      jsxElements.push(
+        <DayButton day={i + 1} bgColor="bg-default" canClick="true" />,
+      );
     }
   }
   return (

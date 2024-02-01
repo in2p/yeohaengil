@@ -15,15 +15,23 @@ const Day = styled.button`
   border: 0px;
 `;
 
-function DayButton({ day, bgColor }) {
+function DayButton({ day, bgColor, canClick = false }) {
   const dispatch = useDispatch();
+  if (canClick) {
+    return (
+      <Day
+        className={bgColor}
+        onClick={() => {
+          dispatch(setDay(day));
+        }}
+      >
+        <PiWalletBold style={{ fontSize: '15px', margin: '0px' }} />
+        <p style={{ margin: '0px' }}>Day{day}</p>
+      </Day>
+    );
+  }
   return (
-    <Day
-      className={bgColor}
-      onClick={() => {
-        dispatch(setDay(day));
-      }}
-    >
+    <Day className={bgColor}>
       <PiWalletBold style={{ fontSize: '15px', margin: '0px' }} />
       <p style={{ margin: '0px' }}>Day{day}</p>
     </Day>
