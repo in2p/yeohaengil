@@ -11,6 +11,7 @@ function SearchPage() {
       date: '2024-01-27 ~ 2024-01-29',
       destination: '경기도 하남',
       average: '123456',
+      like: '40',
     },
     {
       user: 'user2',
@@ -18,6 +19,7 @@ function SearchPage() {
       date: '2023-11-19 ~ 2023-11-22',
       destination: '강원도 강릉',
       average: '234567',
+      like: '1094만',
     },
     {
       user: 'user3',
@@ -25,6 +27,7 @@ function SearchPage() {
       date: '2024-01-10 ~ 2024-01-15',
       destination: '서울특별시 강남',
       average: '345678',
+      like: '5K',
     },
   ];
 

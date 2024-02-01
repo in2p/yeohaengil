@@ -42,6 +42,7 @@ const Average = styled.div`
 const UserBox = styled(CircleBox)`
   width: 25px;
   height: 25px;
+  border: 1px solid black;
 `;
 
 function SearchCard({ userURL, img }) {

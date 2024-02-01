@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import logo from '../../../assets/Gil_logo2.png';
 
@@ -24,6 +24,9 @@ const HeaderLogo = styled.img`
 `;
 
 function Header() {
+  const hideHeader = useLocation();
+
+  // if (hideHeader.pathname === '/setting') return null;
   return (
     <HeaderContainer>
       <Link to="/">
