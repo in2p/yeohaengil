@@ -16,7 +16,9 @@ const LoginContainer = styled.div`
   height: 100%;
 `;
 
-const IconWrapper = styled.img``;
+const IconWrapper = styled.img`
+  height: 30px;
+`;
 
 const LoginWrapper = styled.div``;
 
