@@ -1,4 +1,6 @@
 import './Footer.css';
+import { useLocation } from 'react-router-dom';
+
 import {
   AiOutlineHome,
   AiOutlineSearch,
@@ -8,6 +10,9 @@ import {
 } from 'react-icons/ai';
 
 function Footer() {
+  const hideFooter = useLocation();
+  if (hideFooter.pathname === '/login') return null;
+
   return (
     <div className="navWrapper">
       <div className="navItem">

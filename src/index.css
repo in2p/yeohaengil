@@ -1,5 +1,6 @@
 html {
     background-color: #f2f2f2;
+    height: 100%;
 }
 body {
     position: relative;
@@ -8,13 +9,17 @@ body {
     max-width: 375px;
     /*height: calc(var(--vh, 1vh) * 100); 모바일에서 잘 보이기 위함*/
     height: 100%;
-    min-height: 95vh;
+    min-height: 100vh;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
     background-color: #fff;
     box-shadow: rgba(0,0,0,0.2)  0px 20px 30px;
 }
-
+#root{
+    height: 100%;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

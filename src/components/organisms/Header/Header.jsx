@@ -1,8 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
 import logo from '../../../assets/Gil_logo1.png';
 
 function Header() {
+  const hideHeader = useLocation();
+  if (hideHeader.pathname === '/login') return null;
   return (
     <div className="headerContainer">
       <div className="headerLogo">

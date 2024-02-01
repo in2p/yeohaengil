@@ -20,9 +20,15 @@
   }
 } */
 
-.fullContainer {
-  padding: 10px 14px;
-  padding-bottom: 65px;
+.App{
   height: 100%;
+}
+
+.fullContainer {
+  
+  padding: 10px 14px;
+  padding-bottom: 120px;
+  height: 100%;
+  margin: 0px;
 }
 
