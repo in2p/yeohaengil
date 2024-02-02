@@ -50,6 +50,7 @@ function LoginPage() {
 
   return (
     <LoginContainer>
+      <div className="bg-default" style={{ flexBasis: '10%' }} />
       <IconWrapper src={TripIcon} alt="icon" />
       <LoginWrapper>
         <a id="kakao-login-btn" href="/">
