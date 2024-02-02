@@ -9,6 +9,18 @@
     color: black;
 }
 
+.bg-Wdefault {
+    /* 선택되지않은 아이콘 하얀글씨버젼 : 지도아이콘, 지역/날짜 아이콘 등 */
+    background-color: #707070;
+    color: white;
+}
+
+.text-Bdefault {
+    /* 검정글씨  : 장소추가버튼, 검색바탕, 설정배경 등 */
+    background-color: #F1F1F1;
+    color: white;
+}
+
 /* size */
 .w-100{
     width: 100%;
@@ -75,11 +87,17 @@
     font-size: 8px;
 }
 
+/* font-default 값 어떠한지*/
 .font-small{
     font-size: 12px;
 }
 .font-medium{
     font-size: 20px;
+}
+
+/*폰트 강조 굵기*/
+.font-bold {
+    font-weight: bold;
 }
 
 /* margin css */
