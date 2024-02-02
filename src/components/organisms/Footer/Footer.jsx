@@ -11,8 +11,8 @@ import {
 
 function Footer() {
   const hideFooter = useLocation();
-  if (hideFooter.pathname === '/login') return null;
 
+  if (hideFooter.pathname.startsWith('/login')) return null;
   return (
     <div className="navWrapper">
       <div className="navItem">
