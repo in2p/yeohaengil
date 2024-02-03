@@ -29,8 +29,8 @@ import MessageListPage from './components/pages/MessageListPage/MessageListPage.
 import MyPage from './components/pages/MyPage/MyPage.jsx';
 import MapPage from './components/pages/MapPage/MapPage.jsx';
 import FollowPage from './components/pages/FollowPage/FollowPage.jsx';
-import LoginPage from './components/pages/LoginPage/LoginPage.jsx';
-import LoginHandler from './components/pages/LoginPage/LoginHandler.jsx';
+import LoginPage from './components/pages/Login/LoginPage.jsx';
+import LoginHandler from './components/pages/Login/LoginHandler.jsx';
 import SettingPage1 from './components/pages/SettingPage/SettingPage1.jsx';
 
 axios.defaults.withCredentials = true;
@@ -51,6 +51,7 @@ function App() {
             <Route path="/map" element={<MapPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/login/oauth2/kakao" element={<LoginHandler />} />
+            <Route path="/login/oauth2/naver" element={<LoginHandler />} />
             <Route path="/setting" element={<SettingPage1 />} />
           </Routes>
         </div>

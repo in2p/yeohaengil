@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import KakaoImg from '../../assets/login/kakao/kakao_login_medium_wide.png';
+import KakaoImg from '../../../assets/login/kakao/kakao_login_medium_wide.png';
 
 const LoginImage = styled.img`
   height: 40px;
@@ -11,7 +11,7 @@ const LoginImage = styled.img`
 function KakaoLogin() {
   const authParams = new URLSearchParams({
     client_id: process.env.REACT_APP_KAKAO_JS_KEY,
-    redirect_uri: process.env.REACT_APP_REDIRECT_URI,
+    redirect_uri: process.env.REACT_APP_KAKAO_REDIRECT_URI,
     response_type: 'code',
   });
 
