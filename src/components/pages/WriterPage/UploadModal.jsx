@@ -103,6 +103,10 @@ function UploadModal() {
     setTotalBudget(newTotalBudget);
   }, [accomCost, transCost]);
 
+  const sendPost = e => {
+    // formdata 형식으로 사진, 지역, 날짜, 장소
+  };
+
   return (
     <Modal>
       <ModalBody>
