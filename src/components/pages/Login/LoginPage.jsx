@@ -5,8 +5,8 @@ import '../../../styles/globals.css';
 import styled from 'styled-components';
 
 import TripIcon from '../../../assets/Gil_logo2.png';
-import KakaoLogin from './KakaoLogin.jsx';
-import NaverLogin from './NaverLogin.jsx';
+import KakaoLogin from '../../molecules/Login/KakaoLogin.jsx';
+import NaverLogin from '../../molecules/Login/NaverLogin.jsx';
 
 const LoginContainer = styled.div`
   display: flex;

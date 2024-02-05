@@ -30,7 +30,7 @@ import MyPage from './components/pages/MyPage/MyPage.jsx';
 import MapPage from './components/pages/MapPage/MapPage.jsx';
 import FollowPage from './components/pages/FollowPage/FollowPage.jsx';
 import LoginPage from './components/pages/Login/LoginPage.jsx';
-import LoginHandler from './components/pages/LoadingPage/LoadingPage.jsx';
+import LoginHandler from './components/pages/Login/LoginLoadingPage.jsx';
 import SettingPage1 from './components/pages/SettingPage/SettingPage1.jsx';
 
 axios.defaults.withCredentials = true;

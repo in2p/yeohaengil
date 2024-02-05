@@ -1,49 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
-import styled, { keyframes } from 'styled-components';
-import { TypeAnimation } from 'react-type-animation';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import TripIcon from '../../../assets/Gil_logo2.png';
 
 import { setLoggedIn } from '../../../store.jsx';
 
-const spin = keyframes`
-  to {
-    transform: rotate(360deg);
-  }
-`;
+import LoginSpinner from '../../organisms/LoginSpinner/LoginSpinner.jsx';
 
-// Styled components
-const LoadingContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-`;
-
-const LoadingSpinner = styled.div`
-  width: 40px;
-  height: 40px;
-  border: 4px solid white;
-  border-radius: 50%;
-  border-left-color: #fe4c40;
-  animation: ${spin} 1.5s linear infinite;
-  margin-bottom: 20px;
-`;
-const IconWrapper = styled.img`
-  height: 70px;
-  margin-bottom: 20px;
-`;
-
-function LoginHandler() {
+function LoginLoadingPage() {
   const navigate = useNavigate();
 
   const code = new URL(window.location.href).searchParams.get('code');
-
   const called = useRef(false); // prevent rerender caused by StrictMode
-
   const { loggedIn } = useSelector(state => state); // redux is logged in?
   const [provider, setProvider] = useState(''); // naver or kakao
 
@@ -92,18 +60,6 @@ function LoginHandler() {
     socialLogin();
   }, [code, navigate, loggedIn, provider]);
 
-  return (
-    <LoadingContainer>
-      <IconWrapper src={TripIcon} alt="icon" />
-      <LoadingSpinner />
-      <TypeAnimation
-        sequence={['여행길 로딩중...', 2000, '잠시만 기다려 주세요..', 2000]}
-        wrapper="span"
-        cursor
-        repeat={Infinity}
-        style={{ display: 'inline-block' }}
-      />
-    </LoadingContainer>
-  );
+  return <LoginSpinner />;
 }
-export default LoginHandler;
+export default LoginLoadingPage;
