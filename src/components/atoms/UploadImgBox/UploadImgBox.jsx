@@ -10,13 +10,12 @@ const Container = styled.div`
 
 const PreviewContainer = styled.div`
   width: 100%;
-  max-width: 196px;
+  max-width: 200px;
   height: 261px;
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap; // 이미지가 한줄로
   display: flex;
-  margin-right: 30px;
 `;
 
 const PreviewImage = styled.img`
@@ -69,6 +68,7 @@ function UploadImgBox() {
     const fileArr = e.target.files;
     const fileUrls = [];
     const uploadedFiles = Array.from(fileArr); // 선택된 파일을 포함하는 FileList 객체인 fileArr을 배열로 변환
+    console.log(fileArr);
 
     setUploadImg(prevUploadImg => [...prevUploadImg, ...uploadedFiles]); // 새 파일이 기존 배열에 대체가 아닌, 추가됨
     setShowPreview(true); // 파일 업로드 후 미리보기 표시
@@ -80,6 +80,11 @@ function UploadImgBox() {
       fileReader.onload = () => {
         fileUrls.push(fileReader.result); // 현재 파일의 데이터 URL을 fileUrls 배열에 추가
         setPreviewImg(prevPreviewImg => [...prevPreviewImg, fileReader.result]);
+        // const imageData = {
+        //   id: Date.now(),
+        //   fileUrls: fileUrls.push(fileReader.result),
+        // };
+        // setPreviewImg(prevPreviewImg => [...prevPreviewImg, imageData]);
       };
 
       fileReader.readAsDataURL(file); // base64형태로 파일 읽어오기
@@ -104,10 +109,10 @@ function UploadImgBox() {
     <Container>
       {showPreview && (
         <PreviewContainer>
-          {previewImg.map((img, id) => (
-            <ImageContainer key={img.id}>
-              <PreviewImage alt={img} src={img} />
-              <DeleteIcon alt="이미지 삭제" onClick={() => deleteImg(id)} />
+          {previewImg.map(img => (
+            <ImageContainer key={img}>
+              <PreviewImage alt="미리보기" src={img} />
+              <DeleteIcon alt="이미지 삭제" onClick={() => deleteImg(img)} />
             </ImageContainer>
           ))}
         </PreviewContainer>
