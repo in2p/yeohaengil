@@ -30,8 +30,9 @@ import MyPage from './components/pages/MyPage/MyPage.jsx';
 import MapPage from './components/pages/MapPage/MapPage.jsx';
 import FollowPage from './components/pages/FollowPage/FollowPage.jsx';
 import LoginPage from './components/pages/Login/LoginPage.jsx';
-import LoginHandler from './components/pages/Login/LoginLoadingPage.jsx';
+
 import SettingPage1 from './components/pages/SettingPage/SettingPage1.jsx';
+import LoginLoadingPage from './components/pages/Login/LoginLoadingPage.jsx';
 
 import useToken from './hooks/useToken.js';
 
@@ -41,7 +42,19 @@ function App() {
   const { token, setToken } = useToken();
 
   if (!token) {
-    return <LoginPage setToken={setToken} />;
+    return (
+      <BrowserRouter>
+        <div className="App fullContainer">
+          <Routes>
+            <Route path="/*" element={<LoginPage />} />
+            <Route
+              path="/login/oauth2/*"
+              element={<LoginLoadingPage setToken={setToken} />}
+            />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    );
   }
 
   return (
@@ -57,9 +70,9 @@ function App() {
             <Route path="/mypage" element={<MyPage />} />
             <Route path="follow" element={<FollowPage />} />
             <Route path="/map" element={<MapPage />} />
-            <Route path="/login" element={<LoginPage />} />
+            {/* <Route path="/login" element={<LoginPage />} />
             <Route path="/login/oauth2/kakao" element={<LoginHandler />} />
-            <Route path="/login/oauth2/naver" element={<LoginHandler />} />
+            <Route path="/login/oauth2/naver" element={<LoginHandler />} /> */}
             <Route path="/setting" element={<SettingPage1 />} />
           </Routes>
         </div>
