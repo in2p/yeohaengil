@@ -33,9 +33,17 @@ import LoginPage from './components/pages/Login/LoginPage.jsx';
 import LoginHandler from './components/pages/Login/LoginLoadingPage.jsx';
 import SettingPage1 from './components/pages/SettingPage/SettingPage1.jsx';
 
+import useToken from './hooks/useToken.js';
+
 axios.defaults.withCredentials = true;
 
 function App() {
+  const { token, setToken } = useToken();
+
+  if (!token) {
+    return <LoginPage setToken={setToken} />;
+  }
+
   return (
     <BrowserRouter>
       <div className="App">
