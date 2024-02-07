@@ -110,7 +110,7 @@ function UploadModal() {
   return (
     <Modal>
       <ModalBody>
-        <CloseIcon onClick={() => setOpenModal(false)} />
+        <CloseIcon onClick={() => setOpenModal(!openModal)} />
         <FlexBox>
           <p style={{ marginTop: '35px' }}>공개 설정</p>
         </FlexBox>

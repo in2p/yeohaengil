@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import KakaoLogin from '../../../assets/login/kakao/kakao_login_medium_wide.png';
 import NaverLogin from '../../../assets/login/naver/btnG.png';
 import NaverIcon from '../../../assets/login/naver/btnG_icon.png';
-import TripIcon from '../../../assets/Gil_logo2.png';
+import TripIcon from '../../../assets/Gil_logo.png';
 
 const LoginContainer = styled.div`
   display: flex;
