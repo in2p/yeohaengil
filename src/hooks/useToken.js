@@ -13,7 +13,7 @@ function useToken() {
   // userToken 을 localStorage 에 저장하고 token state 에 저장한다.
   const saveToken = userToken => {
     localStorage.setItem('token', JSON.stringify(userToken));
-    setToken(token);
+    setToken(userToken);
   };
 
   return {
