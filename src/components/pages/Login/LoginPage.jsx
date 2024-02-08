@@ -1,7 +1,4 @@
-import { useEffect } from 'react';
-
 import '../../../styles/globals.css';
-
 import styled from 'styled-components';
 
 import TripIcon from '../../../assets/Gil_logo2.png';
@@ -22,13 +19,8 @@ const IconWrapper = styled.img`
 
 const LoginWrapper = styled.div``;
 
-//
-
 function LoginPage() {
-  useEffect(() => {
-    // 👇️ adding multiple classes to the body element
-    document.body.classList.add('bg-main');
-  }, []);
+  document.body.classList.add('bg-main');
 
   return (
     <LoginContainer>

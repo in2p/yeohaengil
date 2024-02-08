@@ -1,23 +1,7 @@
 import './App.css';
-import {
-  Routes,
-  Route,
-  Link,
-  useNavigate,
-  Outlet,
-  BrowserRouter,
-  RouterProvider,
-  createBrowserRouter,
-} from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
-import {
-  useEffect,
-  useRef,
-  useState,
-  createContext,
-  useContext,
-  useCallback,
-} from 'react';
+import { useState } from 'react';
 
 import Header from './components/organisms/Header/Header.jsx';
 import Footer from './components/organisms/Footer/Footer.jsx';
@@ -40,6 +24,7 @@ axios.defaults.withCredentials = true;
 
 function App() {
   const { token, setToken } = useToken();
+  const { isLoggedIn, setIsLoggedIn } = useState();
 
   if (!token) {
     return (
@@ -56,6 +41,10 @@ function App() {
       </BrowserRouter>
     );
   }
+  // isLoggedIn 으로 토큰의 유효성을 서버에 검사 해야하나
+  // 1. 서버에게 토큰의 유호성 검사 하라고 시키기
+  // 2. 재랜더링 마다 리프레쉬 토큰으로 jwt 토큰 받아와서 성공하면 isLoggedIn 에 저장하기
+  // 정답: 요청을 수신 할때마다 로그인의 상태를 확인 할 수 있다.
 
   return (
     <BrowserRouter>

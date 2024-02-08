@@ -4,34 +4,33 @@ import axios from 'axios';
 function useOAuth() {
   const [jwtToken, setJwtToken] = useState(null);
   // const called = useRef(false); // prevent rerender caused by StrictMode
-  const exchangeToken = async (code, provider) => {
+  const exchangeToken = async authorizationCode => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_SERVER_URL}/login`,
+        `${process.env.REACT_APP_SERVER_URL}/api/auth/kakao`,
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ code, provider }),
+          body: JSON.stringify({ authorizationCode }),
         },
       ).then(data => data.json());
-      setJwtToken(response.data);
+      console.log(response);
+      // setJwtToken(response.data);
     } catch (error) {
-      console.error('Error exchanging code for token:', error);
-      setJwtToken(null);
+      console.error('Error exchanging authorizationCode for token:', error);
+      // setJwtToken(null);
     }
   };
 
   useEffect(() => {
-    const { search, pathname } = window.location;
+    const { search } = window.location;
     const urlParams = new URLSearchParams(search);
-    const code = urlParams.get('code');
-    const segments = pathname.split('/');
-    const provider = segments[segments.length - 1];
+    const authorizationCode = urlParams.get('code');
 
-    if (code && provider) {
-      exchangeToken(code, provider);
+    if (authorizationCode) {
+      exchangeToken(authorizationCode);
     }
   }, []);
 
