@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 function useOAuth() {
   const [jwtToken, setJwtToken] = useState(null);
   const called = useRef(false); // prevent rerender caused by StrictMode
-  const navigate = useNavigate();
 
   const exchangeToken = async authorizationCode => {
     if (called.current) return;
@@ -23,7 +22,7 @@ function useOAuth() {
       setJwtToken(response.accessToken);
     } catch (error) {
       console.error('Error exchanging authorizationCode for token:', error);
-      setJwtToken(null);
+      setJwtToken(undefined);
     }
   };
 
