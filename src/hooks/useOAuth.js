@@ -16,11 +16,10 @@ function useOAuth() {
           body: JSON.stringify({ authorizationCode }),
         },
       ).then(data => data.json());
-      console.log(response);
-      // setJwtToken(response.data);
+      setJwtToken(response.accessToken);
     } catch (error) {
       console.error('Error exchanging authorizationCode for token:', error);
-      // setJwtToken(null);
+      setJwtToken(null);
     }
   };
 

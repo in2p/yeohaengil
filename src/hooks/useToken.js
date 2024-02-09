@@ -4,8 +4,14 @@ function useToken() {
   // localStorage 에서 token 을 가져온다.
   const getToken = () => {
     const tokenString = localStorage.getItem('token');
-    const userToken = JSON.parse(tokenString);
-    return userToken?.token; // userToken is {"token": ..., "expires": ...}
+    try {
+      const userToken = JSON.parse(tokenString);
+      return userToken?.token; // userToken is {"token": ..., "expires": ...}
+    } catch {
+      // tokenString: undefined 일 경우
+      localStorage.removeItem('token');
+      return null;
+    }
   };
   // 해당 component 가 재 랜더링 될때마다 localStorage 에서 token 을 가져온다.
   const [token, setToken] = useState(getToken());
