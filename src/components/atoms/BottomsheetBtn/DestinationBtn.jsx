@@ -26,6 +26,9 @@ const OkBtn = styled.button`
   border: 0;
   font-weight: bold;
   cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 function DestinationBtn({ onClose }) {

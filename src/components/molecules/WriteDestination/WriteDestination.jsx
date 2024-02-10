@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { LuPlane, LuCalendarDays } from 'react-icons/lu';
-import ModalDestination from '../Bottomsheet/ModalDestination.jsx';
-import CATEGORIES from '../Bottomsheet/CATEGORIES.jsx';
+import ModalDestination from '../WriteBottomsheet/ModalDestination.jsx';
+import CATEGORIES from '../WriteBottomsheet/CATEGORIES.jsx';
+import WriteCalendar from '../../atoms/WriteCalendar/WriteCalendar.jsx';
 
 const FlexBox = styled.div`
   display: flex;
@@ -18,16 +19,26 @@ const IconContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 const WrtieText = styled.div`
   margin: 9px 0 0 9px;
   height: 38px;
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 500;
   color: #707070;
 
   display: flex;
   align-items: center;
+`;
+
+const CalendarContainer = styled.div`
+  position: absolute;
+  margin: 50px 0 0 50px;
+  z-index: 100;
 `;
 
 function WriteDestination({ onApply }) {
@@ -35,11 +46,14 @@ function WriteDestination({ onApply }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubcategory, setSelectedSubcategory] = useState(null);
 
+  const [calendarOpen, setCalendarOpen] = useState(false);
+  const [selectedDateRange, setSelectedDateRange] = useState(null);
+
   // 선택 완료 시,아이콘 값 변경
   const isCategorySelected =
     selectedCategory !== null && selectedSubcategory !== null;
-
-  const closeModal = () => {
+  const isDateSelected = selectedDateRange !== null;
+  const closeCategory = () => {
     setBottomOpen(false);
   };
 
@@ -60,10 +74,30 @@ function WriteDestination({ onApply }) {
     setSelectedSubcategory(foundSubcategory.name);
   };
 
-  const handleApply = () => {
+  const handleDestinationApply = () => {
     onApply(selectedCategory, selectedSubcategory);
-    closeModal();
+    closeCategory();
   };
+
+  // 달력
+  const handleDateSelect = dateRange => {
+    setSelectedDateRange(dateRange);
+    setCalendarOpen(false);
+  };
+
+  const formatDateString = date => {
+    const year = date.getFullYear().toString().padStart(4, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}/${month}/${day}`;
+  };
+
+  // 날짜 수 계산
+  const numDaysSelected = selectedDateRange
+    ? Math.ceil(
+        (selectedDateRange[1] - selectedDateRange[0]) / (1000 * 60 * 60 * 24),
+      )
+    : 0;
 
   return (
     <div>
@@ -81,17 +115,31 @@ function WriteDestination({ onApply }) {
         </WrtieText>
         {bottomOpen && (
           <ModalDestination
-            onClose={closeModal}
+            onClose={closeCategory}
             onSelectCategory={handleCategorySelection}
-            onApply={handleApply}
+            onApply={handleDestinationApply}
           />
         )}
       </FlexBox>
       <FlexBox>
-        <IconContainer>
-          <LuCalendarDays style={{ fontSize: '20px', color: 'white' }} />
+        <IconContainer onApply={isDateSelected}>
+          <LuCalendarDays
+            style={{ fontSize: '20px', color: 'white' }}
+            onClick={() => setCalendarOpen(true)}
+          />
         </IconContainer>
-        <WrtieText>년/월/일</WrtieText>
+        {calendarOpen && (
+          <CalendarContainer>
+            <WriteCalendar onApply={handleDateSelect} />
+          </CalendarContainer>
+        )}
+        <WrtieText>
+          {selectedDateRange !== null && selectedDateRange.length === 2
+            ? `${formatDateString(selectedDateRange[0])} - ${formatDateString(
+                selectedDateRange[1],
+              )}`
+            : '날짜'}
+        </WrtieText>
       </FlexBox>
     </div>
   );

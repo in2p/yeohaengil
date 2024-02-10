@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { LuMap } from 'react-icons/lu';
 import styled from 'styled-components';
 
@@ -13,18 +14,20 @@ const Map = styled.div`
 
   color: white;
   background: gray;
-  font-size: 15px;
+  font-size: 30px;
 
   position: fixed;
   bottom: 80px;
-  right: 39%;
+  margin-left: 300px;
 `;
 
 function MapCircle() {
   return (
-    <Map>
-      <LuMap style={{ fontSize: '30px' }} />
-    </Map>
+    <Link to="/map">
+      <Map>
+        <LuMap />
+      </Map>
+    </Link>
   );
 }
 
