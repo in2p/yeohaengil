@@ -19,7 +19,7 @@
     "no-unused-vars": "off",
     "react/react-in-jsx-scope": "off", // Disable the rule
     "import/extensions": ["error", "ignorePackages", { "js": "always", "jsx": "always" }],
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
+    // "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": false, "optionalDependencies": false, "peerDependencies": false}]
   }
 }
-

@@ -20,4 +20,5 @@ function DayItem({ length }) {
     </div>
   );
 }
+
 export default DayItem;

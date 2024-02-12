@@ -176,3 +176,14 @@
     display: flex;
     float: left;
 }
+
+/*main color - flex - center */
+.main-center {
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+
+    background: #fe4c40;
+    color: white;
+}

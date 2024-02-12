@@ -1,18 +1,16 @@
 import '../../../styles/globals.css';
-import UploadImgBox from '../../atoms/UploadImgBox/UploadImgBox.jsx';
-import WriteDestination from '../../molecules/WriteDestination/WriteDestination.jsx';
-import WriteDayContents from '../../molecules/WriteDayContents/WriteDayContents.jsx';
-import DayItem from '../../molecules/DayItem/DayItem.jsx';
+import WriteImgBox from '../../atoms/WriteImgBox/WriteImgBox.jsx';
+import WriteDayContents from '../../organisms/WriteDayContents/WriteDayContents.jsx';
 import PostButton from '../../atoms/PostButton/PostButton.jsx';
 import MapCircle from '../../atoms/MapCircle/MapCircle.jsx';
+import WriteDestination from '../../molecules/WriteDestination/WriteDestination.jsx';
 
-function WritePage() {
+function WritePage({ numDaysSelected }) {
   return (
     <div className="writeWrapper">
-      <UploadImgBox />
+      <WriteImgBox />
       <WriteDestination />
-      <DayItem />
-      <WriteDayContents />
+      <WriteDayContents length={numDaysSelected} />
       <PostButton />
       <MapCircle />
     </div>
