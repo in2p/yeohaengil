@@ -1,4 +1,5 @@
 import './main.css';
+
 import RecordedTravels from '../../organisms/RecordedTravels/RecordedTravels.jsx';
 import TravelCard from '../../organisms/TravelCard/TravelCard.js';
 
