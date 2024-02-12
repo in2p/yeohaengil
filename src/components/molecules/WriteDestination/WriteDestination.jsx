@@ -53,6 +53,7 @@ function WriteDestination({ onApply }) {
   const isCategorySelected =
     selectedCategory !== null && selectedSubcategory !== null;
   const isDateSelected = selectedDateRange !== null;
+
   const closeCategory = () => {
     setBottomOpen(false);
   };

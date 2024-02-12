@@ -5,12 +5,12 @@ import PostButton from '../../atoms/PostButton/PostButton.jsx';
 import MapCircle from '../../atoms/MapCircle/MapCircle.jsx';
 import WriteDestination from '../../molecules/WriteDestination/WriteDestination.jsx';
 
-function WritePage() {
+function WritePage({ numDaysSelected }) {
   return (
     <div className="writeWrapper">
       <WriteImgBox />
       <WriteDestination />
-      <WriteDayContents />
+      <WriteDayContents length={numDaysSelected} />
       <PostButton />
       <MapCircle />
     </div>

@@ -3,18 +3,19 @@ import { LuAlertCircle } from 'react-icons/lu';
 import styled from 'styled-components';
 
 const AlertCost = styled(LuAlertCircle)`
-  position: absolute;
-  right: 5%;
+  position: fixed;
+  margin-left: 330px;
+  z-index: 100;
   color: #707070;
+  cursor: pointer;
 `;
 
 const Tip = styled.div`
-  position: relative;
-  left: 20%;
-  max-width: 350px;
-  top: 100%;
+  position: fixed;
+  right: 50%;
+  transform: translateX(50%);
   display: ${props => (props.isVisible ? 'block' : 'none')};
-  /* border: 1px solid #707070;*/
+  /* border: 1px solid #707070; */
   padding: 5px;
   border-radius: 10px;
   background-color: #fff;
