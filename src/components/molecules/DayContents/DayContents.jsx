@@ -4,7 +4,7 @@ function DayContents({ contents }) {
   return (
     <div className="d-flex" style={{ width: '300vw' }}>
       {contents.map((a, i) => (
-        <div className="d-flex" key={{ i }}>
+        <div className="d-flex" key={a.id}>
           <div className="content-img" />
           <div className="content-column">
             <h3>{a.title}</h3>

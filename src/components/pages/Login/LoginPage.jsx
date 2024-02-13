@@ -1,7 +1,7 @@
 import '../../../styles/globals.css';
 import styled from 'styled-components';
 
-import TripIcon from '../../../assets/Gil_logo2.png';
+import TripIcon from '../../../assets/Gil_logo.png';
 import KakaoLogin from '../../molecules/Login/KakaoLogin.jsx';
 import NaverLogin from '../../molecules/Login/NaverLogin.jsx';
 
