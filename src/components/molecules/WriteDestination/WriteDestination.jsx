@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { LuPlane, LuCalendarDays } from 'react-icons/lu';
 import ModalDestination from '../WriteBottomsheet/ModalDestination.jsx';
 import CATEGORIES from '../WriteBottomsheet/CATEGORIES.jsx';
 import WriteCalendar from '../../atoms/WriteCalendar/WriteCalendar.jsx';
+import DayItem2 from '../DayItem/DayItem2.jsx';
 
 const FlexBox = styled.div`
   display: flex;
@@ -87,18 +88,11 @@ function WriteDestination({ onApply }) {
   };
 
   const formatDateString = date => {
-    const year = date.getFullYear().toString().padStart(4, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const day = date.getDate().toString().padStart(2, '0');
-    return `${year}/${month}/${day}`;
+    const Cyear = date.getFullYear().toString().padStart(4, '0');
+    const Cmonth = (date.getMonth() + 1).toString().padStart(2, '0');
+    const Cday = date.getDate().toString().padStart(2, '0');
+    return `${Cyear}/${Cmonth}/${Cday}`;
   };
-
-  // 날짜 수 계산
-  const numDaysSelected = selectedDateRange
-    ? Math.ceil(
-        (selectedDateRange[1] - selectedDateRange[0]) / (1000 * 60 * 60 * 24),
-      )
-    : 0;
 
   return (
     <div>
@@ -142,6 +136,10 @@ function WriteDestination({ onApply }) {
             : '날짜'}
         </WrtieText>
       </FlexBox>
+      <DayItem2
+        startDate={selectedDateRange?.[0]}
+        endDate={selectedDateRange?.[1]}
+      />
     </div>
   );
 }

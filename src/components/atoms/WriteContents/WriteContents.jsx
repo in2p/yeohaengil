@@ -1,21 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { LuAlignJustify, LuUser2, LuXCircle } from 'react-icons/lu';
+import CostAlert from '../Alert/CostAlert.jsx';
 
 const FlexBox = styled.div`
   display: flex;
 `;
 
-const WrtieText = styled.div`
-  margin: 9px 0 0 9px;
-  height: 38px;
+const TextBox = styled.div`
   font-size: 12px;
   color: #707070;
-
-  display: flex;
-  align-items: center;
 `;
-
 const PlanContainer = styled.div`
   margin: 20px 10px 2.5px 10px;
   display: flex;
@@ -41,31 +36,65 @@ const PlaceContainer = styled.div`
   border: 1px solid #efefef;
   margin-left: 5px;
   padding: 5px;
-
   display: flex;
   align-items: center;
 `;
 
-const AddPlace = styled.div`
+const UserIcon = styled(LuUser2)`
+  display: flex;
+  float: left;
+  margin-left: 10px;
+`;
+const TextArea = styled.input`
+  margin-left: 3px;
+  width: 50px;
+  height: 30px;
+  align-items: center;
+  //border: none;
+`;
+const ExpectCost = styled(TextArea)``;
+const ActualCost = styled(TextArea)``;
+
+const XBtn = styled(LuXCircle)`
+  margin-left: 3px;
+  font-size: 15px;
+  color: #707070;
+  cursor: pointer;
+`;
+const AddPlaceBtn = styled.button`
   float: right;
   align-items: center;
-  background-color: #eee;
+  border: none;
   margin-top: 5px;
   font-size: 12px;
   border-radius: 10px;
-  padding: 7px;
+  padding: 10px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
 `;
+
+const items = [
+  [
+    { title: '원루프랩 사당점', category: '카페', price: '8000원' },
+    { title: '원루프랩 강남점', category: '식당', price: '18000원' },
+    { title: '원루프랩 수원점', category: '숙소', price: '118000원' },
+  ],
+];
 
 function WriteContents() {
   return (
     <div>
+      <CostAlert />
       <FlexBox>
         <PlanContainer>
           <LuAlignJustify style={{ fontSize: '15px' }} />
           <Circle>1</Circle>
           <PlaceContainer>
-            <div className="content-row">
-              <p>원루프랩 사당점</p>
+            <TextBox className="content-row">
+              <p>{items.title}</p>
               <p
                 style={{
                   color: '#75B5D9',
@@ -75,29 +104,20 @@ function WriteContents() {
               >
                 카페
               </p>
-              <LuUser2
-                style={{
-                  display: 'flex',
-                  float: 'left',
-                  color: 'gray',
-                  fontSize: '15px',
-                  marginLeft: '10px',
-                }}
-              />
+              <UserIcon />
               <p>2</p>
-              <p style={{ marginLeft: '5px' }}>9,999,999원 | 9,999,999원</p>
-            </div>
+              <ExpectCost />
+              <ActualCost />
+            </TextBox>
           </PlaceContainer>
-          <LuXCircle
-            style={{ marginLeft: '3px', fontSize: '15px', color: 'gray' }}
-          />
+          <XBtn />
         </PlanContainer>
       </FlexBox>
-      <AddPlace style={{ color: 'black' }}>
-        <p style={{ margin: '0px' }}>장소 추가</p>
-      </AddPlace>
+      <AddPlaceBtn className="bg-default">장소 추가</AddPlaceBtn>
     </div>
   );
 }
 
 export default WriteContents;
+
+const WriteBox = () => {};

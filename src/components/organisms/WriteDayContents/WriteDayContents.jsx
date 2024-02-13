@@ -1,18 +1,14 @@
 import styled from 'styled-components';
 import React from 'react';
-import CostAlert from '../../atoms/Alert/CostAlert.jsx';
 import WriteContents from '../../atoms/WriteContents/WriteContents.jsx';
-import DayItem from '../../molecules/DayItem/DayItem.jsx';
+import DayItem2 from '../../molecules/DayItem/DayItem2.jsx';
 
-const DayContainer = styled.div`
-  display: flex;
-`;
+const DayContainer = styled.div``;
 
-function WriteDayContents({ numDaysSelected }) {
+function WriteDayContents() {
   return (
     <DayContainer>
-      <CostAlert />
-      <DayItem length={numDaysSelected} />
+      <DayItem2 />
       <WriteContents />
     </DayContainer>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import { styled, keyframes } from 'styled-components';
 import { TypeAnimation } from 'react-type-animation';
 
-import TripIcon from '../../../assets/Gil_logo2.png';
+import TripIcon from '../../../assets/Gil_logo.png';
 
 const spin = keyframes`
   to {
