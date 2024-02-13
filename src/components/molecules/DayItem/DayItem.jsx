@@ -7,10 +7,10 @@ function DayItem({ length }) {
 
   for (let i = 0; i < length; i += 1) {
     if (i === day - 1) {
-      jsxElements.push(<DayButton bgColor="bg-main" day={i + 1} />);
+      jsxElements.push(<DayButton bgColor="bg-main" day={i + 1} key={i} />);
     } else {
       jsxElements.push(
-        <DayButton day={i + 1} bgColor="bg-default" canClick="true" />,
+        <DayButton day={i + 1} bgColor="bg-default" canClick="true" key={i} />,
       );
     }
   }
@@ -20,4 +20,5 @@ function DayItem({ length }) {
     </div>
   );
 }
+
 export default DayItem;

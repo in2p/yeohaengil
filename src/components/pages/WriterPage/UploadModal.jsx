@@ -103,10 +103,14 @@ function UploadModal() {
     setTotalBudget(newTotalBudget);
   }, [accomCost, transCost]);
 
+  const sendPost = e => {
+    // formdata 형식으로 사진, 지역, 날짜, 장소
+  };
+
   return (
     <Modal>
       <ModalBody>
-        <CloseIcon onClick={() => setOpenModal(false)} />
+        <CloseIcon onClick={() => setOpenModal(!openModal)} />
         <FlexBox>
           <p style={{ marginTop: '35px' }}>공개 설정</p>
         </FlexBox>

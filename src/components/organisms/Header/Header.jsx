@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import logo from '../../../assets/Gil_logo2.png';
+import logo from '../../../assets/Gil_logo.png';
 
 const HeaderContainer = styled.div`
   position: sticky;
@@ -16,8 +16,8 @@ const HeaderLogo = styled.img`
   //justify-content: center; /*수평정렬*/
   //align-items: center; /*수직정렬*/
 
-  width: 100px;
-  height: 100px;
+  width: 130px;
+  height: 130px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 10px;
@@ -25,7 +25,8 @@ const HeaderLogo = styled.img`
 
 function Header() {
   const hideHeader = useLocation();
-  if (hideHeader.pathname === '/login') return null;
+  if (hideHeader.pathname.startsWith('/login')) return null;
+
   // if (hideHeader.pathname === '/setting') return null;
   return (
     <HeaderContainer>
