@@ -26,21 +26,21 @@ function App() {
   const { token, setToken } = useToken();
   const { isLoggedIn, setIsLoggedIn } = useState();
 
-  // if (!token) {
-  //   return (
-  //     <BrowserRouter>
-  //       <div className="App fullContainer">
-  //         <Routes>
-  //           <Route path="/*" element={<LoginPage />} />
-  //           <Route
-  //             path="/login/oauth2/*"
-  //             element={<LoginLoadingPage setToken={setToken} />}
-  //           />
-  //         </Routes>
-  //       </div>
-  //     </BrowserRouter>
-  //   );
-  // }
+  if (!token) {
+    return (
+      <BrowserRouter>
+        <div className="App fullContainer">
+          <Routes>
+            <Route path="/*" element={<LoginPage />} />
+            <Route
+              path="/login/oauth2/*"
+              element={<LoginLoadingPage setToken={setToken} />}
+            />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    );
+  }
   // isLoggedIn 으로 토큰의 유효성을 서버에 검사 해야하나
   // 1. 서버에게 토큰의 유호성 검사 하라고 시키기
   // 2. 재랜더링 마다 리프레쉬 토큰으로 jwt 토큰 받아와서 성공하면 isLoggedIn 에 저장하기
