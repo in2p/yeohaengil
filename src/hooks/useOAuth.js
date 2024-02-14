@@ -16,8 +16,7 @@ function useOAuth() {
       data: { authorizationCode },
     })
       .then(response => {
-        console.log(response);
-        setJwtToken(response.accessToken);
+        setJwtToken(response.data.accessToken);
       })
       .catch(error => {
         console.error('Error exchanging authorizationCode for token:', error);

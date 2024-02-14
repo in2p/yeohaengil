@@ -24,7 +24,10 @@ axios.defaults.withCredentials = true;
 
 function App() {
   const { token, setToken } = useToken();
-  const { isLoggedIn, setIsLoggedIn } = useState();
+
+  const storeToken = jwtToken => {
+    setToken(jwtToken);
+  };
 
   if (!token) {
     return (
@@ -34,7 +37,7 @@ function App() {
             <Route path="/*" element={<LoginPage />} />
             <Route
               path="/login/oauth2/*"
-              element={<LoginLoadingPage setToken={setToken} />}
+              element={<LoginLoadingPage setToken={storeToken} />}
             />
           </Routes>
         </div>
