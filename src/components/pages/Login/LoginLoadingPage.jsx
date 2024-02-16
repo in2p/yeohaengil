@@ -13,7 +13,7 @@ function LoginLoadingPage() {
 
   useEffect(() => {
     if (jwtToken) {
-      setToken('token', jwtToken);
+      setToken('token', jwtToken, { sameSite: 'lax', maxAge: 60 * 60 * 1000 });
       navigate('/');
     }
   }, [jwtToken, navigate, setToken]);
