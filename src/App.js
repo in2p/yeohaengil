@@ -1,7 +1,8 @@
 import './App.css';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useCookies } from 'react-cookie'; // useCookies import
 
 import Header from './components/organisms/Header/Header.jsx';
 import Footer from './components/organisms/Footer/Footer.jsx';
@@ -23,13 +24,12 @@ import useToken from './hooks/useToken.js';
 axios.defaults.withCredentials = true;
 
 function App() {
-  const { token, setToken } = useToken();
+  // 이렇게 할바에 리덕스로 관리하는게 좋을 것 같다.
+  // const { token, setToken } = useToken();
 
-  const storeToken = jwtToken => {
-    setToken(jwtToken);
-  };
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
 
-  if (!token) {
+  if (!cookies.token) {
     return (
       <BrowserRouter>
         <div className="App fullContainer">
@@ -37,7 +37,8 @@ function App() {
             <Route path="/*" element={<LoginPage />} />
             <Route
               path="/login/oauth2/*"
-              element={<LoginLoadingPage setToken={storeToken} />}
+              // element={<LoginLoadingPage setToken={saveToken} />}
+              element={<LoginLoadingPage />}
             />
           </Routes>
         </div>
