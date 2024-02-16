@@ -20,13 +20,15 @@ import SettingPage1 from './components/pages/SettingPage/SettingPage1.jsx';
 import LoginLoadingPage from './components/pages/Login/LoginLoadingPage.jsx';
 
 import useToken from './hooks/useToken.js';
-
+import 'normalize.css/normalize.css';
+// in app.js
 axios.defaults.withCredentials = true;
+let vh = window.innerHeight * 0.01;
+vh = document.documentElement.style.setProperty('--vh', `${vh}px`);
 
 function App() {
   // 이렇게 할바에 리덕스로 관리하는게 좋을 것 같다.
   // const { token, setToken } = useToken();
-
   const [cookies, setCookie, removeCookie] = useCookies(['token']);
 
   if (!cookies.token) {
@@ -67,6 +69,12 @@ function App() {
             <Route path="/login/oauth2/kakao" element={<LoginHandler />} />
             <Route path="/login/oauth2/naver" element={<LoginHandler />} /> */}
             <Route path="/setting" element={<SettingPage1 />} />
+            <Route path="/*" element={<LoginPage />} />
+            <Route
+              path="/login/oauth2/*"
+              // element={<LoginLoadingPage setToken={saveToken} />}
+              element={<LoginLoadingPage />}
+            />
           </Routes>
         </div>
         <Footer />

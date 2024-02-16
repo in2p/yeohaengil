@@ -11,7 +11,7 @@ function MyPage() {
     setSelect(!select);
   };
   return (
-    <div>
+    <div style={{ height: '100%' }}>
       <MyProfileModule />
       <MySelectModule select={select} handleSelect={handleSelect} />
       <MyGridView />

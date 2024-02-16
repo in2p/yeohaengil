@@ -3,11 +3,15 @@ import styled from 'styled-components';
 import logo from '../../../assets/Gil_logo.png';
 
 const HeaderContainer = styled.div`
-  position: sticky;
+  position: fixed;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 375px;
   top: 0px; /*상단고정*/
   left: 0;
   right: 0;
   background-color: white;
+  padding: 0px;
   /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
 `;
 
@@ -20,7 +24,7 @@ const HeaderLogo = styled.img`
   height: 130px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 `;
 
 function Header() {
