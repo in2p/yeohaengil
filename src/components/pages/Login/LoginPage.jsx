@@ -10,7 +10,7 @@ const LoginContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 100%;
+  height: calc(var(--vh, 1vh) * 100 - 250px);
 `;
 
 const IconWrapper = styled.img`

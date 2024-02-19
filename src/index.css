@@ -1,5 +1,6 @@
 html {
     background-color: #f2f2f2;
+    height: 100%;
 }
 body {
     position: relative;
@@ -13,10 +14,11 @@ body {
     margin-bottom: 0px;
     background-color: #fff;
     box-shadow: rgba(0,0,0,0.2)  0px 20px 30px;
+    min-height: 100%;
 }
-html, body, #root{
-    height: 100%;
-}
+
+
+
 
 
 code {
