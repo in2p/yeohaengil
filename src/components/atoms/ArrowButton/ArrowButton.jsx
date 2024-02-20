@@ -3,7 +3,6 @@ import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
 import styled from 'styled-components';
 
 const ArrowWrapper = styled.div`
-  z-index: 5;
   background-color: white;
   border-radius: 50%;
   margin-top: auto;
