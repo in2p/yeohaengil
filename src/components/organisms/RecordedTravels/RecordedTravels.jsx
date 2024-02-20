@@ -8,6 +8,7 @@ import '../../../styles/globals.css';
 
 import CirclesListView from '../../molecules/CirclesListView/CirclesListView.jsx';
 import CirclesView from '../../molecules/CirclesView/CirclesView.jsx';
+import ArrowButton from '../../atoms/ArrowButton/ArrowButton.jsx';
 
 const recordedTrip = [
   {
@@ -32,6 +33,12 @@ const recordedTrip = [
     date: '2023.12.15 ~ 2023.12.19',
   },
 ];
+const RightArrowContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  transform: translate(0, -50%);
+`;
 
 function RecordedTravels() {
   const [isDetail, setIsDetail] = useState(false);
@@ -58,13 +65,17 @@ function RecordedTravels() {
         )}
       </div>
       {recordedTrip.length > 0 ? (
-        <div className="d-flex flex-between">
+        <div className="d-flex flex-between" style={{ position: 'relative' }}>
           {!isDetail ? (
             <CirclesView travels={recordedTrip} />
           ) : (
             <CirclesListView travels={recordedTrip} />
           )}
-          {!isDetail && <IoIosArrowForward style={{ fontSize: '20px' }} />}
+          {!isDetail && (
+            <RightArrowContainer>
+              <ArrowButton />
+            </RightArrowContainer>
+          )}
         </div>
       ) : (
         <div style={{ textAlign: 'center', color: 'gray' }}>

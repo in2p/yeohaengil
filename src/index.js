@@ -11,11 +11,12 @@ import store from './store.jsx';
 // id가 root인 요소를 최상위 컨테이너로 설정
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <React.StrictMode>
-  <Provider store={store}>
-    <CookiesProvider defaultSetOptions={{ path: '/' }}>
-      <App />
-    </CookiesProvider>
-  </Provider>,
-  // </React.StrictMode>,
+  <React.StrictMode>
+    <Provider store={store}>
+      <CookiesProvider defaultSetOptions={{ path: '/' }}>
+        <App />
+      </CookiesProvider>
+    </Provider>
+    ,
+  </React.StrictMode>,
 );

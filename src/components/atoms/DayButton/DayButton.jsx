@@ -11,6 +11,7 @@ const Day = styled.button`
   border-radius: 10px;
   padding: 7px;
   border: 0px;
+  transition: 0.5s;
 `;
 
 function DayButton({ day, bgColor, changeDay }) {
