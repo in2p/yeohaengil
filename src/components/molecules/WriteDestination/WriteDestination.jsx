@@ -16,7 +16,6 @@ const IconContainer = styled.div`
   border-radius: 9px;
   background: ${({ onApply }) => (onApply ? '#FE4C40' : '#707070')};
   margin-top: 9px;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,7 +30,6 @@ const WrtieText = styled.div`
   font-size: 13px;
   font-weight: 500;
   color: #707070;
-
   display: flex;
   align-items: center;
 `;
@@ -42,7 +40,7 @@ const CalendarContainer = styled.div`
   z-index: 100;
 `;
 
-function WriteDestination({ onApply }) {
+function WriteDestination({ onApply, selectDaysRange }) {
   const [bottomOpen, setBottomOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubcategory, setSelectedSubcategory] = useState(null);

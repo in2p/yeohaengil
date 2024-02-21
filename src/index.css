@@ -7,14 +7,14 @@ body {
     width: 100%;
     top: 0;
     max-width: 375px;
-    height: calc(var(--vh, 1vh) * 100 - 250px);
-    min-height: 100%;
+    /*height: calc(var(--vh, 1vh) * 100); 모바일에서 잘 보이기 위함!*/
     margin-left: auto;
     margin-right: auto;
     margin-top: 0px;
     margin-bottom: 0px;
     background-color: #fff;
     box-shadow: rgba(0,0,0,0.2)  0px 20px 30px;
+    min-height: 100%;
 }
 
 code {

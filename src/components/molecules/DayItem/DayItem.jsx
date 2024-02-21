@@ -1,8 +1,6 @@
-import { useSelector } from 'react-redux';
 import DayButton from '../../atoms/DayButton/DayButton.jsx';
 
-function DayItem({ length }) {
-  const day = useSelector(state => state.day);
+function DayItem({ length, changeDay, day }) {
   const jsxElements = [];
   console.log(length);
 
@@ -11,7 +9,12 @@ function DayItem({ length }) {
       jsxElements.push(<DayButton bgColor="bg-main" day={i + 1} key={i} />);
     } else {
       jsxElements.push(
-        <DayButton day={i + 1} bgColor="bg-default" canClick="true" key={i} />,
+        <DayButton
+          day={i + 1}
+          bgColor="bg-default"
+          changeDay={changeDay}
+          key={i}
+        />,
       );
     }
   }

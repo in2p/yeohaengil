@@ -9,6 +9,11 @@
     color: black;
 }
 
+.bg-hover{
+    background-color: #eee;
+    color: #fe4c40;
+}
+
 .bg-Wdefault {
     /* 선택되지않은 아이콘 하얀글씨버젼 : 지도아이콘, 지역/날짜 아이콘 등 */
     background-color: #707070;
