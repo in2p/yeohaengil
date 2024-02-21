@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import SettingProfile from '../../molecules/SettingProfile/SettingProfile.jsx';
+import SettingBox from '../../atoms/SettingBtnBox/SettingBox.jsx';
 
 const Wrapper = styled.div`
   position: absolute;
@@ -22,13 +24,17 @@ const Delete = styled.div`
   line-height: normal;
   margin-top: 20px;
 `;
-function SettingLogout() {
+function SettingPrev() {
   return (
-    <Wrapper>
-      <Logout>로그아웃</Logout>
-      <Delete>탈퇴하기</Delete>
-    </Wrapper>
+    <div>
+      <SettingProfile />
+      <SettingBox />
+      <Wrapper>
+        <Logout>로그아웃</Logout>
+        <Delete>탈퇴하기</Delete>
+      </Wrapper>
+    </div>
   );
 }
 
-export default SettingLogout;
+export default SettingPrev;

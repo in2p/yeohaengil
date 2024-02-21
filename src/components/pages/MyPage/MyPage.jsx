@@ -11,11 +11,11 @@ function MyPage() {
     setSelect(!select);
   };
   return (
-    <div>
+    <>
       <MyProfileModule />
       <MySelectModule select={select} handleSelect={handleSelect} />
       <MyGridView />
-    </div>
+    </>
   );
 }
 export default MyPage;

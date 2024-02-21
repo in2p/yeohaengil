@@ -1,48 +1,61 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const BoxTop = styled.div`
+const Box = styled.div`
   width: 330px;
   height: 49px;
-  border-top-left-radius: 9px;
-  border-top-right-radius: 9px;
+  border-radius: ${({ borderTop, borderBottom }) => {
+    if (borderTop) {
+      return '9px 9px 0 0';
+    }
+    if (borderBottom) {
+      return '0 0 9px 9px';
+    }
+    return '0';
+  }};
   border: 1px solid #9f9d9d;
-  border-bottom: none;
+  border-bottom: ${({ borderBottom }) =>
+    borderBottom ? '1px solid #9f9d9d' : 'none'};
 
   margin: 0 auto;
-  margin-top: 5px;
+  margin-top: ${({ marginTop }) => (marginTop ? '5px' : '0')};
 
-  .alarmText {
+  .txt {
     font-size: 13px;
     margin-left: 20px;
     line-height: 49px;
   }
 `;
-const BoxBottom = styled.div`
-  width: 330px;
-  height: 49px;
-  border-bottom-left-radius: 9px;
-  border-bottom-right-radius: 9px;
-  border: 1px solid #9f9d9d;
 
-  margin: 0 auto;
+const Container = styled.div``;
 
-  .alarmText {
-    font-size: 13px;
-    margin-left: 20px;
-    line-height: 49px;
-  }
+const Header = styled.div`
+  color: #676565;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 0 5px;
+  margin-top: 50px;
 `;
 
 function SettingBox() {
   return (
     <div>
-      <BoxTop>
-        <div className="alarmText">메세지 설정</div>
-      </BoxTop>
-      <BoxBottom>
-        <div className="alarmText">댓글 설정</div>
-      </BoxBottom>
+      <Container>
+        <Header>소통 및 알람</Header>
+        <Box borderTop marginTop>
+          <div className="txt">메세지 설정</div>
+        </Box>
+        <Box borderBottom>
+          <div className="txt">댓글 설정</div>
+        </Box>
+        <Header>정보</Header>
+        <Box borderTop marginTop>
+          <div className="txt">개인정보 취급방침</div>
+        </Box>
+        <Box borderBottom>
+          <div className="txt">자주 묻는 질문</div>
+        </Box>
+      </Container>
     </div>
   );
 }

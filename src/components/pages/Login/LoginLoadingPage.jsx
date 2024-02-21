@@ -1,16 +1,22 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
+
 import LoginSpinner from '../../organisms/LoginSpinner/LoginSpinner.jsx';
 import useOAuth from '../../../hooks/useOAuth.js';
 
-function LoginLoadingPage({ setToken }) {
+function LoginLoadingPage() {
   const navigate = useNavigate();
   document.body.classList.add('bg-main');
   const jwtToken = useOAuth(); // OAuth access token => jwt access token
-  setToken(jwtToken); // local storage {token: jwtToken} save
+  const [token, setToken, removeToken] = useCookies(['token']);
+
   useEffect(() => {
-    if (jwtToken === undefined) navigate('/');
-  }, [jwtToken, navigate]);
+    if (jwtToken) {
+      setToken('token', jwtToken, { sameSite: 'lax', maxAge: 60 * 60 * 1000 });
+      navigate('/');
+    }
+  }, [jwtToken, navigate, setToken]);
 
   return <LoginSpinner />;
 }

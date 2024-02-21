@@ -1,18 +1,19 @@
 import '../../../styles/globals.css';
+import { useState } from 'react';
 import WriteImgBox from '../../atoms/WriteImgBox/WriteImgBox.jsx';
 import WriteDayContents from '../../organisms/WriteDayContents/WriteDayContents.jsx';
-import PostButton from '../../atoms/PostButton/PostButton.jsx';
-import MapCircle from '../../atoms/MapCircle/MapCircle.jsx';
+import WriteButton from '../../atoms/WriteButton/WriteButton.jsx';
 import WriteDestination from '../../molecules/WriteDestination/WriteDestination.jsx';
+import CostAlert from '../../atoms/Alert/CostAlert.jsx';
 
-function WritePage({ numDaysSelected }) {
+function WritePage() {
   return (
     <div className="writeWrapper">
       <WriteImgBox />
+      <CostAlert />
       <WriteDestination />
-      <WriteDayContents length={numDaysSelected} />
-      <PostButton />
-      <MapCircle />
+      <WriteDayContents />
+      <WriteButton />
     </div>
   );
 }

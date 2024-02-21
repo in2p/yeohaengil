@@ -2,10 +2,8 @@ import styled from 'styled-components';
 import '../../../styles/globals.css';
 
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import Destination from '../../molecules/Destination/Destination.jsx';
-import DayButton from '../../atoms/DayButton/DayButton.jsx';
 import DayItem from '../../molecules/DayItem/DayItem.jsx';
 import DayContents from '../../molecules/DayContents/DayContents.jsx';
 
@@ -19,14 +17,49 @@ const Box = styled.div`
 
 const items = [
   [
-    { title: '원루프랩 사당점', category: '카페', price: '8000원' },
-    { title: '원루프랩 강남점', category: '식당', price: '18000원' },
-    { title: '원루프랩 수원점', category: '숙소', price: '118000원' },
+    {
+      id: 0,
+      title: '원루프랩 사당점 테스트',
+      category: '카페',
+      price: '8000원',
+    },
+    { id: 1, title: '원루프랩 강남점', category: '식당', price: '18000원' },
+    { id: 2, title: '원루프랩 수원점', category: '숙소', price: '118000원' },
   ],
   [
-    { title: '스타벅스 사당점', category: '카페', price: '8000원' },
-    { title: '스타벅스 강남점', category: '식당', price: '18000원' },
-    { title: '스타벅스 수원점', category: '숙소', price: '118000원' },
+    { id: 0, title: '스타벅스 사당점', category: '카페', price: '8000원' },
+    { id: 1, title: '스타벅스 강남점', category: '식당', price: '18000원' },
+    { id: 2, title: '스타벅스 수원점', category: '숙소', price: '118000원' },
+  ],
+  [
+    { id: 0, title: '원루프랩 사당점', category: '카페', price: '8000원' },
+    { id: 1, title: '원루프랩 강남점', category: '식당', price: '18000원' },
+    { id: 2, title: '원루프랩 수원점', category: '숙소', price: '118000원' },
+  ],
+  [
+    { id: 0, title: '스타벅스 사당점', category: '카페', price: '8000원' },
+    { id: 1, title: '스타벅스 강남점', category: '식당', price: '18000원' },
+    { id: 2, title: '스타벅스 수원점', category: '숙소', price: '118000원' },
+  ],
+  [
+    { id: 0, title: '원루프랩 사당점', category: '카페', price: '8000원' },
+    { id: 1, title: '원루프랩 강남점', category: '식당', price: '18000원' },
+    { id: 2, title: '원루프랩 수원점', category: '숙소', price: '118000원' },
+  ],
+  [
+    { id: 0, title: '스타벅스 사당점', category: '카페', price: '8000원' },
+    { id: 1, title: '스타벅스 강남점', category: '식당', price: '18000원' },
+    { id: 2, title: '스타벅스 수원점', category: '숙소', price: '118000원' },
+  ],
+  [
+    { id: 0, title: '원루프랩 사당점', category: '카페', price: '8000원' },
+    { id: 1, title: '원루프랩 강남점', category: '식당', price: '18000원' },
+    { id: 2, title: '원루프랩 수원점', category: '숙소', price: '118000원' },
+  ],
+  [
+    { id: 0, title: '스타벅스 사당점', category: '카페', price: '8000원' },
+    { id: 1, title: '스타벅스 강남점', category: '식당', price: '18000원' },
+    { id: 2, title: '스타벅스 수원점', category: '숙소', price: '118000원' },
   ],
 ];
 
@@ -40,18 +73,23 @@ const DetailButton = styled.button`
 `;
 
 function TravelCard() {
-  const day = useSelector(state => state.day);
+  // const day = useSelector(state => state.day);
+  const [day, setDay] = useState(1);
+
+  const changeDay = dayNum => {
+    setDay(dayNum);
+  };
+
   if (items.length > 0) {
     return (
       <Box>
         {/* 강원도 강릉 과 날짜 */}
         <Destination />
         {/* Day1, Day2, ... */}
-        <DayItem length={items.length} />
+        <DayItem length={items.length} changeDay={changeDay} day={day} />
         {/* Day1 의 일정들 */}
-        <div style={{ overflow: 'hidden' }}>
-          <DayContents contents={items[day - 1]} />
-        </div>
+
+        <DayContents contents={items[day - 1]} key={day} />
 
         <div
           className="d-flex"

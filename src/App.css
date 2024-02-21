@@ -20,15 +20,16 @@
   }
 } */
 
-.App{
-  height: 100%;
-}
+
 
 .fullContainer {
   box-sizing: border-box;
   padding: 10px 14px;
   padding-bottom: 120px;
-  height: 100%;
+  padding-top:130px;
   margin: 0px;
+  /* min-height: calc(var(--vh, 1vh) * 100 ); */
 }
+
+
 
