@@ -16,7 +16,7 @@ import MapPage from './components/pages/MapPage/MapPage.jsx';
 import FollowPage from './components/pages/FollowPage/FollowPage.jsx';
 import LoginPage from './components/pages/Login/LoginPage.jsx';
 
-import SettingPage1 from './components/pages/SettingPage/SettingPage1.jsx';
+import SettingPrev from './components/pages/SettingPage/SettingPrev.jsx';
 import LoginLoadingPage from './components/pages/Login/LoginLoadingPage.jsx';
 
 import useToken from './hooks/useToken.js';
@@ -46,6 +46,25 @@ function App() {
       </BrowserRouter>
     );
   }
+  useEffect(() => {
+    setScreenSize();
+  });
+
+  // if (!token) {
+  //   return (
+  //     <BrowserRouter>
+  //       <div className="App fullContainer">
+  //         <Routes>
+  //           <Route path="/*" element={<LoginPage />} />
+  //           <Route
+  //             path="/login/oauth2/*"
+  //             element={<LoginLoadingPage setToken={setToken} />}
+  //           />
+  //         </Routes>
+  //       </div>
+  //     </BrowserRouter>
+  //   );
+  // }
   // isLoggedIn 으로 토큰의 유효성을 서버에 검사 해야하나
   // 1. 서버에게 토큰의 유호성 검사 하라고 시키기
   // 2. 재랜더링 마다 리프레쉬 토큰으로 jwt 토큰 받아와서 성공하면 isLoggedIn 에 저장하기
@@ -67,7 +86,7 @@ function App() {
             {/* <Route path="/login" element={<LoginPage />} />
             <Route path="/login/oauth2/kakao" element={<LoginHandler />} />
             <Route path="/login/oauth2/naver" element={<LoginHandler />} /> */}
-            <Route path="/setting" element={<SettingPage1 />} />
+            <Route path="/setting" element={<SettingPrev />} />
             <Route path="/*" element={<LoginPage />} />
             <Route
               path="/login/oauth2/*"

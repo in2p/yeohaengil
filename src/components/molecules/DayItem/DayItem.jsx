@@ -2,6 +2,7 @@ import DayButton from '../../atoms/DayButton/DayButton.jsx';
 
 function DayItem({ length, changeDay, day }) {
   const jsxElements = [];
+  console.log(length);
 
   for (let i = 0; i < length; i += 1) {
     if (i === day - 1) {
