@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { LuPlane, LuCalendarDays } from 'react-icons/lu';
 import ModalDestination from '../WriteBottomsheet/ModalDestination.jsx';
@@ -15,7 +15,6 @@ const IconContainer = styled.div`
   border-radius: 9px;
   background: ${({ onApply }) => (onApply ? '#FE4C40' : '#707070')};
   margin-top: 9px;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,7 +29,6 @@ const WrtieText = styled.div`
   font-size: 13px;
   font-weight: 500;
   color: #707070;
-
   display: flex;
   align-items: center;
 `;
@@ -41,7 +39,7 @@ const CalendarContainer = styled.div`
   z-index: 100;
 `;
 
-function WriteDestination({ onApply }) {
+function WriteDestination({ onApply, selectDaysRange }) {
   const [bottomOpen, setBottomOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubcategory, setSelectedSubcategory] = useState(null);
@@ -92,13 +90,15 @@ function WriteDestination({ onApply }) {
     const day = date.getDate().toString().padStart(2, '0');
     return `${year}/${month}/${day}`;
   };
-
   // 날짜 수 계산
-  const numDaysSelected = selectedDateRange
-    ? Math.ceil(
-        (selectedDateRange[1] - selectedDateRange[0]) / (1000 * 60 * 60 * 24),
-      )
-    : 0;
+  useEffect(() => {
+    const numDaysSelected = selectedDateRange
+      ? Math.ceil(
+          (selectedDateRange[1] - selectedDateRange[0]) / (1000 * 60 * 60 * 24),
+        )
+      : 0;
+    selectDaysRange(numDaysSelected);
+  }, [selectDaysRange, selectedDateRange]);
 
   return (
     <div>

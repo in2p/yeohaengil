@@ -17,7 +17,7 @@ function CirclesView({ travels }) {
   return (
     <div className="d-flex">
       {travels.map((t, i) => (
-        <TripView key={{ i }}>
+        <TripView key={t.id}>
           <CircleBox img={t.img_url} />
           <p className="font-small mt-3 mb-0">{t.location}</p>
         </TripView>
