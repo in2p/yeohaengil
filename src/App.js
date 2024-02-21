@@ -20,7 +20,6 @@ import SettingPage1 from './components/pages/SettingPage/SettingPage1.jsx';
 import LoginLoadingPage from './components/pages/Login/LoginLoadingPage.jsx';
 
 import useToken from './hooks/useToken.js';
-import 'normalize.css/normalize.css';
 // in app.js
 axios.defaults.withCredentials = true;
 let vh = window.innerHeight * 0.01;

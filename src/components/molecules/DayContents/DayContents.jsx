@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { IoIosArrowForward } from 'react-icons/io';
 import styled, { keyframes, css } from 'styled-components';
+import $ from 'jquery';
 
 import ArrowButton from '../../atoms/ArrowButton/ArrowButton.jsx';
 
@@ -10,7 +11,7 @@ const SlideBox = styled.div`
   width: ${props => props.width}px;
   transition: 1s;
   transform: translateX(-${props => props.shift}px);
-  z-index: 0;
+  z-index: 0; 
   }
 `;
 
@@ -53,12 +54,16 @@ function DayContents({ contents }) {
       });
       setDivWidths(widths);
       setDivSumWidths(sumWidhts);
+      // setDivWidths(widths);
+      // setDivSumWidths(sumWidhts);
     };
     updateDivWidths();
     setWidth(totalWidth + 50);
+    // setWidth(totalWidth + 50);
   }, []); // mount 시 1회 실행
 
   const slideBox = document.querySelectorAll('.slide-box')[0];
+
   const RightClickHandler = () => {
     if (currentContent < contents.length - 1) {
       setCurrentContent(currentContent + 1);

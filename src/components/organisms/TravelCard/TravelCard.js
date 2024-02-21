@@ -17,7 +17,12 @@ const Box = styled.div`
 
 const items = [
   [
-    { id: 0, title: '원루프랩 사당점', category: '카페', price: '8000원' },
+    {
+      id: 0,
+      title: '원루프랩 사당점 테스트',
+      category: '카페',
+      price: '8000원',
+    },
     { id: 1, title: '원루프랩 강남점', category: '식당', price: '18000원' },
     { id: 2, title: '원루프랩 수원점', category: '숙소', price: '118000원' },
   ],
@@ -84,7 +89,7 @@ function TravelCard() {
         <DayItem length={items.length} changeDay={changeDay} day={day} />
         {/* Day1 의 일정들 */}
 
-        <DayContents contents={items[day - 1]} />
+        <DayContents contents={items[day - 1]} key={day} />
 
         <div
           className="d-flex"
