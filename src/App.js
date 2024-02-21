@@ -1,7 +1,7 @@
 import './App.css';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Header from './components/organisms/Header/Header.jsx';
 import Footer from './components/organisms/Footer/Footer.jsx';
@@ -15,7 +15,7 @@ import MapPage from './components/pages/MapPage/MapPage.jsx';
 import FollowPage from './components/pages/FollowPage/FollowPage.jsx';
 import LoginPage from './components/pages/Login/LoginPage.jsx';
 
-import SettingPage1 from './components/pages/SettingPage/SettingPage1.jsx';
+import SettingPrev from './components/pages/SettingPage/SettingPrev.jsx';
 import LoginLoadingPage from './components/pages/Login/LoginLoadingPage.jsx';
 
 import useToken from './hooks/useToken.js';
@@ -25,6 +25,14 @@ axios.defaults.withCredentials = true;
 function App() {
   const { token, setToken } = useToken();
   const { isLoggedIn, setIsLoggedIn } = useState();
+
+  function setScreenSize() {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  }
+  useEffect(() => {
+    setScreenSize();
+  });
 
   // if (!token) {
   //   return (
@@ -62,7 +70,7 @@ function App() {
             {/* <Route path="/login" element={<LoginPage />} />
             <Route path="/login/oauth2/kakao" element={<LoginHandler />} />
             <Route path="/login/oauth2/naver" element={<LoginHandler />} /> */}
-            <Route path="/setting" element={<SettingPage1 />} />
+            <Route path="/setting" element={<SettingPrev />} />
           </Routes>
         </div>
         <Footer />

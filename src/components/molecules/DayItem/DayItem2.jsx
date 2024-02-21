@@ -1,6 +1,8 @@
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { useState } from 'react';
 import DayButton from '../../atoms/DayButton/DayButton.jsx';
+import MapModal from '../Modal/MapModal.jsx';
 
 const DayContainer = styled.div`
   display: flex;
@@ -12,10 +14,29 @@ const SelectedDate = styled.span`
   margin: 5px;
   padding: 7px;
 `;
+const AddPlaceBtn = styled.button`
+  display: flex;
+  align-items: center;
+  border: none;
+  margin: 5px 0 0 270px;
+  font-size: 12px;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
 
-function DayItem2({ startDate, endDate }) {
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
+function DayItem2({ startDate, endDate, handleSearch }) {
   const day = useSelector(state => state.day);
   const jsxElements = [];
+  const [uploadModal, setUploadModal] = useState(false);
+
+  const handleCloseModal = () => {
+    setUploadModal(false);
+  };
 
   // 날짜범위 생성
   const selectedDateRange = (start, end) => {
@@ -33,12 +54,23 @@ function DayItem2({ startDate, endDate }) {
   for (let i = 0; i < dateRange.length; i += 1) {
     const currentDate = dateRange[i];
     jsxElements.push(
-      <DayContainer key={i}>
-        <DayButton bgColor="bg-main" day={i + 1} />
-        <SelectedDate>{`${
-          currentDate.getMonth() + 1
-        }.${currentDate.getDate()}`}</SelectedDate>
-      </DayContainer>,
+      <div key={i}>
+        <DayContainer>
+          <DayButton bgColor="bg-main" day={i + 1} />
+          <SelectedDate>{`${
+            currentDate.getMonth() + 1
+          }.${currentDate.getDate()}`}</SelectedDate>
+        </DayContainer>
+        <AddPlaceBtn onClick={() => setUploadModal(true)}>
+          장소 추가
+        </AddPlaceBtn>
+        {uploadModal === true ? (
+          <MapModal
+            handleCloseModal={handleCloseModal}
+            onSearch={handleSearch}
+          />
+        ) : null}
+      </div>,
     );
   }
   return <div>{jsxElements}</div>;

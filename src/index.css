@@ -7,9 +7,8 @@ body {
     width: 100%;
     top: 0;
     max-width: 375px;
-    /*height: calc(var(--vh, 1vh) * 100); 모바일에서 잘 보이기 위함!*/
-    height: 100%;
-    min-height: 100vh;
+    height: calc(var(--vh, 1vh) * 100 - 250px);
+    min-height: 100%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 0px;
@@ -17,9 +16,7 @@ body {
     background-color: #fff;
     box-shadow: rgba(0,0,0,0.2)  0px 20px 30px;
 }
-#root{
-    height: 100%;
-}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

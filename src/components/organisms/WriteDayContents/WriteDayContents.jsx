@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import React from 'react';
 import WriteContents from '../../atoms/WriteContents/WriteContents.jsx';
 import DayItem2 from '../../molecules/DayItem/DayItem2.jsx';
+import CostAlert from '../../atoms/Alert/CostAlert.jsx';
 
 const DayContainer = styled.div``;
 
