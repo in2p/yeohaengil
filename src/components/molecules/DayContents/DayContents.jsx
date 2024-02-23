@@ -11,8 +11,7 @@ const SlideBox = styled.div`
   width: ${props => props.width}px;
   transition: 1s;
   transform: translateX(-${props => props.shift}px);
-  z-index: 0; 
-  }
+  z-index: 0;
 `;
 
 const RightArrowContainer = styled.div`

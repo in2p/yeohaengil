@@ -89,7 +89,7 @@ function TravelCard() {
         <DayItem length={items.length} changeDay={changeDay} day={day} />
         {/* Day1 의 일정들 */}
 
-        <DayContents contents={items[day - 1]} key={day} />
+        <DayContents contents={items[day - 1]} />
 
         <div
           className="d-flex"

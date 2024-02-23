@@ -46,9 +46,6 @@ function App() {
       </BrowserRouter>
     );
   }
-  useEffect(() => {
-    setScreenSize();
-  });
 
   // if (!token) {
   //   return (
