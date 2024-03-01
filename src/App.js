@@ -84,7 +84,7 @@ function App() {
             <Route path="/login/oauth2/kakao" element={<LoginHandler />} />
             <Route path="/login/oauth2/naver" element={<LoginHandler />} /> */}
             <Route path="/setting" element={<SettingPrev />} />
-            <Route path="/*" element={<LoginPage />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route
               path="/login/oauth2/*"
               // element={<LoginLoadingPage setToken={saveToken} />}

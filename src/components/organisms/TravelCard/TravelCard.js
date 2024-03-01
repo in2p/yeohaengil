@@ -1,18 +1,19 @@
 import styled from 'styled-components';
 import '../../../styles/globals.css';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Destination from '../../molecules/Destination/Destination.jsx';
 import DayItem from '../../molecules/DayItem/DayItem.jsx';
 import DayContents from '../../molecules/DayContents/DayContents.jsx';
+import MainMap from '../MainMap/MainMap.jsx';
 
 const Box = styled.div`
   width: 100%;
   margin: auto;
   border-radius: 15px;
   box-shadow: 0px 3px 5px 0px #888888;
-  padding-top: 150px;
+  overflow: hidden;
 `;
 
 const items = [
@@ -75,32 +76,42 @@ const DetailButton = styled.button`
 function TravelCard() {
   // const day = useSelector(state => state.day);
   const [day, setDay] = useState(1);
+  const [contentHeight, setContentHeight] = useState(0);
 
   const changeDay = dayNum => {
     setDay(dayNum);
   };
 
+  // Map 의 fullSize 를 위해서 Map 밑에있는 것들의 높이를 구한다
+  useEffect(() => {
+    const height = document.getElementById('get-size').offsetHeight;
+    setContentHeight(height);
+  }, [setContentHeight]);
+
   if (items.length > 0) {
     return (
       <Box>
-        {/* 강원도 강릉 과 날짜 */}
-        <Destination />
-        {/* Day1, Day2, ... */}
-        <DayItem length={items.length} changeDay={changeDay} day={day} />
-        {/* Day1 의 일정들 */}
+        <MainMap contentHeight={contentHeight} />
+        <div id="get-size">
+          {/* 강원도 강릉 과 날짜 */}
+          <Destination />
+          {/* Day1, Day2, ... */}
+          <DayItem length={items.length} changeDay={changeDay} day={day} />
+          {/* Day1 의 일정들 */}
 
-        <DayContents contents={items[day - 1]} />
+          <DayContents contents={items[day - 1]} />
 
-        <div
-          className="d-flex"
-          style={{
-            padding: '15px',
-            justifyContent: 'flex-end',
-            color: 'gray',
-          }}
-        >
-          <p>평균 123,456원</p>
-          <DetailButton>일정 상세보기</DetailButton>
+          <div
+            className="d-flex"
+            style={{
+              padding: '15px',
+              justifyContent: 'flex-end',
+              color: 'gray',
+            }}
+          >
+            <p>평균 123,456원</p>
+            <DetailButton>일정 상세보기</DetailButton>
+          </div>
         </div>
       </Box>
     );
