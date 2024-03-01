@@ -30,22 +30,22 @@ function App() {
   // const { token, setToken } = useToken();
   const [cookies, setCookie, removeCookie] = useCookies(['token']);
 
-  if (!cookies.token) {
-    return (
-      <BrowserRouter>
-        <div className="App fullContainer">
-          <Routes>
-            <Route path="/*" element={<LoginPage />} />
-            <Route
-              path="/login/oauth2/*"
-              // element={<LoginLoadingPage setToken={saveToken} />}
-              element={<LoginLoadingPage />}
-            />
-          </Routes>
-        </div>
-      </BrowserRouter>
-    );
-  }
+  // if (!cookies.token) {
+  //   return (
+  //     <BrowserRouter>
+  //       <div className="App fullContainer">
+  //         <Routes>
+  //           <Route path="/*" element={<LoginPage />} />
+  //           <Route
+  //             path="/login/oauth2/*"
+  //             // element={<LoginLoadingPage setToken={saveToken} />}
+  //             element={<LoginLoadingPage />}
+  //           />
+  //         </Routes>
+  //       </div>
+  //     </BrowserRouter>
+  //   );
+  // }
 
   // if (!token) {
   //   return (

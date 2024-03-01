@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import DayButton from '../../atoms/DayButton/DayButton.jsx';
 
@@ -11,9 +11,6 @@ const SlideWrapper = styled.div`
 
 function DayItem({ length, changeDay, day }) {
   const [shiftDay, setShiftDay] = useState(0);
-
-  const [pressed, setPressed] = useState(false);
-  const [startC, setStartC] = useState(0);
 
   const jsxElements = [];
   for (let i = 0; i < length; i += 1) {
@@ -30,6 +27,7 @@ function DayItem({ length, changeDay, day }) {
       );
     }
   }
+  // 버튼 누르면 자동으로 해당 day 가 가운데로 가도록 조정
   useEffect(() => {
     const dayContainer = document.querySelectorAll('.day-container')[0];
     const daySlide = document.querySelectorAll('.day-slide')[0];
@@ -50,7 +48,7 @@ function DayItem({ length, changeDay, day }) {
     } else {
       setShiftDay(shiftWidth); // 현제 선택한거 가운데로
     }
-  }, [setShiftDay, day, length]);
+  }, [setShiftDay, day, length, shiftDay]);
 
   return (
     <div className="day-container" style={{ overflow: 'hidden' }}>
@@ -60,5 +58,4 @@ function DayItem({ length, changeDay, day }) {
     </div>
   );
 }
-
 export default DayItem;
