@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import './InfoWindow.css';
 import { useDispatch, useSelector } from 'react-redux';
+import { Status, Wrapper } from '@googlemaps/react-wrapper';
 import SearchBox from '../../atoms/SearchBox/SearchBox.jsx';
 import { setPlace } from '../../../store.jsx';
 
-const { kakao } = window;
+const { google } = window;
 
 const MapContainer = styled.div`
   width: 100%;
@@ -35,11 +36,11 @@ const CloseIcon = styled(AiFillCloseCircle)`
 
 const ModalBody = styled.div`
   position: fixed;
-  top: 35%;
+  top: 25%;
   left: 50%;
   transform: translateX(-50%);
   width: 350px;
-  height: 250px;
+  height: 500px;
   border-radius: 10px;
   padding: 7px;
   background: #fff;
@@ -66,73 +67,89 @@ function MapModal({ handleCloseModal }) {
 
   const searchMap = useCallback(
     searchedPlace => {
-      const infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
-      const container = document.getElementById('myMap');
-      const options = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667),
-        level: 3,
+      const infowindow = new google.maps.InfoWindow();
+      const mapOptions = {
+        center: { lat: 33.450701, lng: 126.570667 },
+        zoom: 3,
       };
-      const map = new kakao.maps.Map(container, options);
+      const map = new google.maps.Map(
+        document.getElementById('myMap'),
+        mapOptions,
+      );
 
-      const ps = new kakao.maps.services.Places();
+      const placesService = new google.maps.places.PlacesService(map);
 
       function displayMarker(place) {
-        const marker = new kakao.maps.Marker({
+        const marker = new google.maps.Marker({
           map,
-          position: new kakao.maps.LatLng(place.y, place.x),
+          position: {
+            lat: place.geometry.location.lat(),
+            lng: place.geometry.location.lng(),
+          },
         });
 
         // 마커에 마우스 오버 이벤트를 등록하여 인포윈도우를 엽니다
-        kakao.maps.event.addListener(marker, 'mouseover', () => {
-          infowindow.setContent(
-            `<div class="info-window">${place.place_name}</div>`,
-          );
+        google.maps.event.addListener(marker, 'mouseover', () => {
+          infowindow.setContent(`<div class="info-window">${place.name}</div>`);
           infowindow.open(map, marker);
         });
 
-        kakao.maps.event.addListener(marker, 'mouseout', () => {
+        google.maps.event.addListener(marker, 'mouseout', () => {
           if (!marker.clicked) {
             infowindow.close();
           }
         });
 
-        kakao.maps.event.addListener(marker, 'click', () => {
+        google.maps.event.addListener(marker, 'click', () => {
           dispatch(setPlace(place));
           marker.clicked = true;
           console.log(place);
         });
       }
 
-      function placesSearchCB(data, status, pagination) {
-        if (status === kakao.maps.services.Status.OK) {
-          const bounds = new kakao.maps.LatLngBounds();
-
-          for (let i = 0; i < data.length; i += 1) {
-            displayMarker(data[i]);
-            bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+      function placesSearchCB(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          for (let i = 0; i < results.length; i += 1) {
+            displayMarker(results[i]);
           }
-          console.log(data);
-
-          map.setBounds(bounds);
         }
       }
 
-      ps.keywordSearch(searchedPlace, placesSearchCB);
+      placesService.textSearch({ query: searchedPlace }, placesSearchCB);
     },
     [dispatch],
   );
 
   const handleSearch = searchedPlace => {
-    console.log(searchedPlace);
     searchMap(searchedPlace);
   };
 
   const handleAddButtonClick = () => {
     if (selectedPlace) {
+      const googleCategories = [
+        'cafe',
+        'store',
+        'food',
+        'point_of_interest',
+        'establishment',
+      ];
+
+      const placeCategories = ['카페', '상점', '음식점', '가볼만한곳', '기타'];
+
+      let selectedCategory = null;
+
+      for (let i = 0; i < googleCategories.length; i += 1) {
+        if (selectedPlace.types.includes(googleCategories[i])) {
+          selectedCategory = placeCategories[i];
+          break;
+        }
+      }
+
       const placeInfo = {
-        placeName: selectedPlace.place_name,
-        categoryName: selectedPlace.category_group_name,
+        placeName: selectedPlace.name,
+        categoryName: selectedCategory,
       };
+
       console.log('selectedPlace', selectedPlace);
       console.log('placeInfo', placeInfo);
       handleCloseModal();
@@ -149,7 +166,7 @@ function MapModal({ handleCloseModal }) {
       <ModalBody>
         <CloseIcon onClick={handleCloseModal} />
         <SearchBox searchMap={handleSearch} />
-        <MapContainer id="myMap" />
+        <MapContainer id="myMap" style={{ width: '100%', height: '400px' }} />
         <UploadBtn className="bg-main" onClick={handleAddButtonClick}>
           추가하기
         </UploadBtn>
