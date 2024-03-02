@@ -29,7 +29,7 @@ const AddPlaceBtn = styled.button`
   }
 `;
 
-function DayItem2({ startDate, endDate, handleSearch }) {
+function DayItem2({ startDate, endDate, handleSearch, handleAddPlace }) {
   const day = useSelector(state => state.day);
   const jsxElements = [];
   const [uploadModal, setUploadModal] = useState(false);
@@ -67,7 +67,7 @@ function DayItem2({ startDate, endDate, handleSearch }) {
         {uploadModal === true ? (
           <MapModal
             handleCloseModal={handleCloseModal}
-            onSearch={handleSearch}
+            handleSearch={handleSearch}
           />
         ) : null}
       </div>,

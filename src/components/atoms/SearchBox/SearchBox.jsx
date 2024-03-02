@@ -21,7 +21,7 @@ const SearchIcon = styled(LuSearch)`
   right: 8px;
 `;
 
-function SearchBox({ onSearch }) {
+function SearchBox({ searchMap }) {
   const [searchPlace, setSearchPlace] = useState(''); // 검색
 
   const onChange = e => {
@@ -30,7 +30,7 @@ function SearchBox({ onSearch }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    onSearch(searchPlace);
+    searchMap(searchPlace);
     setSearchPlace(''); // 다시 placeholder로
   };
 
@@ -38,7 +38,6 @@ function SearchBox({ onSearch }) {
     <SearchContainer>
       <form onSubmit={handleSubmit}>
         <SearchIcon type="submit" />
-
         <input
           type="text"
           placeholder="장소를 검색하세요"
