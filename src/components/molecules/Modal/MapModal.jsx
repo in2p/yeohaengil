@@ -1,11 +1,7 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { AiFillCloseCircle } from 'react-icons/ai';
-import './InfoWindow.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { Status, Wrapper } from '@googlemaps/react-wrapper';
 import SearchBox from '../../atoms/SearchBox/SearchBox.jsx';
-import { setPlace } from '../../../store.jsx';
 
 const { google } = window;
 
@@ -61,71 +57,67 @@ const UploadBtn = styled.button`
   margin-top: 5px;
 `;
 
-function MapModal({ handleCloseModal }) {
-  const dispatch = useDispatch();
-  const selectedPlace = useSelector(state => state.selectedPlace);
+function MapModal({ handleCloseMap, selectedDate, handleAddPlace }) {
+  const [selectedMarkerPlace, setSelectedMarkerPlace] = useState(null);
 
-  const searchMap = useCallback(
-    searchedPlace => {
-      const infowindow = new google.maps.InfoWindow();
-      const mapOptions = {
-        center: { lat: 33.450701, lng: 126.570667 },
-        zoom: 3,
-      };
-      const map = new google.maps.Map(
-        document.getElementById('myMap'),
-        mapOptions,
-      );
+  const searchMap = useCallback(searchedPlace => {
+    const infowindow = new google.maps.InfoWindow();
+    const mapOptions = {
+      center: { lat: 37.553836, lng: 126.969652 },
+      zoom: 10,
+    };
+    const map = new google.maps.Map(
+      document.getElementById('myMap'),
+      mapOptions,
+    );
 
-      const placesService = new google.maps.places.PlacesService(map);
+    function displayMarker(place) {
+      const marker = new google.maps.Marker({
+        map,
+        position: {
+          lat: place.geometry.location.lat(),
+          lng: place.geometry.location.lng(),
+        },
+      });
 
-      function displayMarker(place) {
-        const marker = new google.maps.Marker({
-          map,
-          position: {
-            lat: place.geometry.location.lat(),
-            lng: place.geometry.location.lng(),
-          },
-        });
+      google.maps.event.addListener(marker, 'mouseover', () => {
+        infowindow.setContent(`<div class="info-window">${place.name}</div>`);
+        infowindow.open(map, marker);
+      });
 
-        // 마커에 마우스 오버 이벤트를 등록하여 인포윈도우를 엽니다
-        google.maps.event.addListener(marker, 'mouseover', () => {
-          infowindow.setContent(`<div class="info-window">${place.name}</div>`);
-          infowindow.open(map, marker);
-        });
+      google.maps.event.addListener(marker, 'mouseout', () => {
+        if (!marker.clicked) {
+          infowindow.close();
+        }
+      });
 
-        google.maps.event.addListener(marker, 'mouseout', () => {
-          if (!marker.clicked) {
-            infowindow.close();
-          }
-        });
+      google.maps.event.addListener(marker, 'click', () => {
+        setSelectedMarkerPlace(place);
+        marker.clicked = true;
+      });
+    }
 
-        google.maps.event.addListener(marker, 'click', () => {
-          dispatch(setPlace(place));
-          marker.clicked = true;
-          console.log(place);
-        });
-      }
-
-      function placesSearchCB(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          for (let i = 0; i < results.length; i += 1) {
-            displayMarker(results[i]);
-          }
+    function placesSearchCB(results, status) {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        for (let i = 0; i < results.length; i += 1) {
+          displayMarker(results[i]);
         }
       }
+    }
 
+    // 검색어가 제공된 경우에만 검색 실행
+    if (searchedPlace) {
+      const placesService = new google.maps.places.PlacesService(map);
       placesService.textSearch({ query: searchedPlace }, placesSearchCB);
-    },
-    [dispatch],
-  );
+    }
+  }, []);
 
   const handleSearch = searchedPlace => {
     searchMap(searchedPlace);
   };
 
   const handleAddButtonClick = () => {
-    if (selectedPlace) {
+    if (selectedMarkerPlace) {
       const googleCategories = [
         'cafe',
         'store',
@@ -139,21 +131,25 @@ function MapModal({ handleCloseModal }) {
       let selectedCategory = null;
 
       for (let i = 0; i < googleCategories.length; i += 1) {
-        if (selectedPlace.types.includes(googleCategories[i])) {
+        if (selectedMarkerPlace.types.includes(googleCategories[i])) {
           selectedCategory = placeCategories[i];
           break;
         }
       }
 
       const placeInfo = {
-        placeName: selectedPlace.name,
+        date: selectedDate.toISOString().slice(0, 10),
+        placeName: selectedMarkerPlace.name,
         categoryName: selectedCategory,
+        placePosition: {
+          lat: selectedMarkerPlace.geometry.location.lat(),
+          lng: selectedMarkerPlace.geometry.location.lng(),
+        },
       };
 
-      console.log('selectedPlace', selectedPlace);
       console.log('placeInfo', placeInfo);
-      handleCloseModal();
-      dispatch(setPlace(placeInfo));
+      handleCloseMap();
+      handleAddPlace(placeInfo);
     }
   };
 
@@ -164,7 +160,7 @@ function MapModal({ handleCloseModal }) {
   return (
     <Modal>
       <ModalBody>
-        <CloseIcon onClick={handleCloseModal} />
+        <CloseIcon onClick={handleCloseMap} />
         <SearchBox searchMap={handleSearch} />
         <MapContainer id="myMap" style={{ width: '100%', height: '400px' }} />
         <UploadBtn className="bg-main" onClick={handleAddButtonClick}>

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { LuPlane, LuCalendarDays } from 'react-icons/lu';
-import ModalDestination from '../WriteBottomsheet/ModalDestination.jsx';
-import CATEGORIES from '../WriteBottomsheet/CATEGORIES.jsx';
+import ModalDestination from '../../molecules/WriteBottomsheet/ModalDestination.jsx';
+import CATEGORIES from '../../molecules/WriteBottomsheet/CATEGORIES.jsx';
 import WriteCalendar from '../../atoms/WriteCalendar/WriteCalendar.jsx';
-import DayItem2 from '../DayItem/DayItem2.jsx';
+import DayItem2 from '../../molecules/DayItem/DayItem2.jsx';
 
 const FlexBox = styled.div`
   display: flex;

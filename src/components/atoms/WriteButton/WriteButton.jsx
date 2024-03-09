@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { LuMap } from 'react-icons/lu';
-import { Link } from 'react-router-dom';
+import { MdAddPhotoAlternate } from 'react-icons/md';
+import PhotoModal from '../../molecules/Modal/PhotoModal.jsx';
 
 const Button = styled.button`
   font-weight: bold;
@@ -21,7 +21,7 @@ const Button = styled.button`
     opacity: 0.8;
   }
 `;
-const Map = styled.div`
+const AddPhoto = styled.div`
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -32,7 +32,7 @@ const Map = styled.div`
 
   color: white;
   background: gray;
-  font-size: 30px;
+  font-size: 32px;
 
   position: fixed;
   bottom: 80px;
@@ -40,16 +40,21 @@ const Map = styled.div`
 `;
 
 function WriteButton() {
+  const [photoOpen, setPhotoOpen] = useState(false);
+
+  const handleClosePhoto = () => {
+    setPhotoOpen(false);
+  };
+
   return (
     <div>
       <Button style={{ background: '#FE4C40', color: 'white' }}>
         <p style={{ margin: '0px' }}>발행하기</p>
       </Button>
-      <Link to="/map">
-        <Map>
-          <LuMap />
-        </Map>
-      </Link>
+      <AddPhoto onClick={() => setPhotoOpen(true)}>
+        <MdAddPhotoAlternate />
+      </AddPhoto>
+      {photoOpen && <PhotoModal handleClosePhoto={handleClosePhoto} />}
     </div>
   );
 }
