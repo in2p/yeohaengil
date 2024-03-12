@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { AiFillCloseCircle, AiOutlinePlus } from 'react-icons/ai';
+import { FaMinusCircle } from 'react-icons/fa';
 
 const Modal = styled.div`
   position: absolute;
@@ -40,20 +41,39 @@ const PhotoUpload = styled.div`
 `;
 const UploadImgContainer = styled.div`
   /* 업로드완료 사진 컨테이너 */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+
   width: 100%;
   height: 400px;
   margin-top: 10px;
 
-  background: rgba(217, 217, 217, 0.5);
+  background: rgba(217, 217, 217, 0.3);
   border-radius: 10px;
-  white-space: nowrap;
-
-  /* 업로드 될 사진 위치 */
-  display: flex;
-  flex-direction: row;
 `;
 
-const AddContainer = styled.div`
+const ImageContainer = styled.div`
+  position: relative;
+  margin: 10px;
+`;
+
+const PreviewImage = styled.img`
+  width: 90px;
+  height: 90px;
+  border-radius: 10px;
+  object-fit: cover;
+`;
+
+const DeleteIcon = styled(FaMinusCircle)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: red;
+  cursor: pointer;
+`;
+
+const AddContainer = styled.label`
   /* 업로드할 (+)사진추가 */
   box-sizing: border-box;
 
@@ -72,6 +92,31 @@ const AddContainer = styled.div`
 `;
 
 function PhotoModal({ handleClosePhoto }) {
+  const [showImages, setShowImages] = useState([]);
+
+  // 이미지 상대경로 저장
+  const uploadFile = e => {
+    const imageLists = e.target.files;
+    let imageUrlLists = [...showImages];
+
+    for (let i = 0; i < imageLists.length; i += 1) {
+      const currentImageUrl = URL.createObjectURL(imageLists[i]);
+      imageUrlLists.push(currentImageUrl);
+    }
+
+    if (imageUrlLists.length > 9) {
+      imageUrlLists = imageUrlLists.slice(0, 9);
+      alert('9장 초과');
+    }
+
+    setShowImages(imageUrlLists);
+  };
+
+  // X버튼 클릭 시 이미지 삭제
+  const handleDeleteImage = id => {
+    setShowImages(showImages.filter((_, index) => index !== id));
+  };
+
   return (
     <Modal>
       <ModalBody>
@@ -80,10 +125,24 @@ function PhotoModal({ handleClosePhoto }) {
           사진은 최대 9장까지 첨부할 수 있습니다.
         </p>
         <PhotoUpload>
-          <AddContainer>
+          <AddContainer htmlFor="file" onChange={uploadFile}>
             <AiOutlinePlus />
+            <input
+              type="file"
+              id="file"
+              accept="image/*"
+              style={{ display: 'none' }}
+              multiple
+            />
           </AddContainer>
-          <UploadImgContainer />
+          <UploadImgContainer>
+            {showImages.map((url, id) => (
+              <ImageContainer key={url.id}>
+                <PreviewImage src={url} alt="미리보기" />
+                <DeleteIcon onClick={() => handleDeleteImage(id)} />
+              </ImageContainer>
+            ))}
+          </UploadImgContainer>
         </PhotoUpload>
       </ModalBody>
     </Modal>
