@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@googlemaps/react-wrapper": "^1.1.35",
     "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -17,7 +18,7 @@
     "react-icons": "^5.0.1",
     "react-kakao-login": "^2.1.1",
     "react-kakao-maps-sdk": "^1.1.26",
-    "react-redux": "^9.1.0",
+    "react-redux": "^7.2.1",
     "react-router-dom": "^6.21.2",
     "react-scripts": "5.0.1",
     "react-type-animation": "^3.2.0",

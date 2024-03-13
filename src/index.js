@@ -18,6 +18,5 @@ root.render(
         <App />
       </CookiesProvider>
     </Provider>
-    ,
   </React.StrictMode>,
 );
