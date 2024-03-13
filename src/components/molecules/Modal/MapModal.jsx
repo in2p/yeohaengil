@@ -1,10 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import SearchBox from '../../atoms/SearchBox/SearchBox.jsx';
 
-const { kakao } = window;
+const { google } = window;
+
+const MapContainer = styled.div`
+  width: 100%;
+  height: 16vh;
+  border-radius: 15px;
+  margin: 10px auto;
+`;
 
 const Modal = styled.div`
   position: absolute;
@@ -12,9 +18,8 @@ const Modal = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 9999;
 
-  background-color: rgba(0, 0, 0, 0.15); //투명도
+  background-color: rgba(0, 0, 0, 0.08); //투명도
 `;
 
 const CloseIcon = styled(AiFillCloseCircle)`
@@ -27,10 +32,11 @@ const CloseIcon = styled(AiFillCloseCircle)`
 
 const ModalBody = styled.div`
   position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
   width: 350px;
-  height: 250px;
+  height: 500px;
   border-radius: 10px;
   padding: 7px;
   background: #fff;
@@ -51,73 +57,123 @@ const UploadBtn = styled.button`
   margin-top: 5px;
 `;
 
-function MapModal({ handleCloseModal, handleAddPlace, onSearch }) {
-  const [info, setInfo] = useState();
-  const [markers, setMarkers] = useState([]);
-  const [map, setMap] = useState();
+function MapModal({ handleCloseMap, selectedDate, handleAddPlace }) {
+  const [selectedMarkerPlace, setSelectedMarkerPlace] = useState(null);
+
+  const searchMap = useCallback(searchedPlace => {
+    const infowindow = new google.maps.InfoWindow();
+    const mapOptions = {
+      center: { lat: 37.553836, lng: 126.969652 },
+      zoom: 10,
+    };
+    const map = new google.maps.Map(
+      document.getElementById('myMap'),
+      mapOptions,
+    );
+
+    function displayMarker(place) {
+      const marker = new google.maps.Marker({
+        map,
+        position: {
+          lat: place.geometry.location.lat(),
+          lng: place.geometry.location.lng(),
+        },
+      });
+
+      google.maps.event.addListener(marker, 'mouseover', () => {
+        infowindow.setContent(`<div class="info-window">${place.name}</div>`);
+        infowindow.open(map, marker);
+      });
+
+      google.maps.event.addListener(marker, 'mouseout', () => {
+        if (!marker.clicked) {
+          infowindow.close();
+        }
+      });
+
+      google.maps.event.addListener(marker, 'click', () => {
+        setSelectedMarkerPlace(place);
+        marker.clicked = true;
+      });
+    }
+
+    // 검색결과 마커 표시
+    function placesSearchCB(results, status) {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        for (let i = 0; i < results.length; i += 1) {
+          displayMarker(results[i]);
+        }
+      }
+    }
+
+    // 검색어가 제공된 경우에만 검색 실행
+    if (searchedPlace) {
+      const placesService = new google.maps.places.PlacesService(map);
+      placesService.textSearch({ query: searchedPlace }, placesSearchCB);
+    }
+  }, []);
 
   const handleSearch = searchedPlace => {
-    console.log('검색된 장소:', searchedPlace);
+    searchMap(searchedPlace);
+  };
+
+  // 장소추가 모달의 추가하기 버튼
+  const handleAddButtonClick = () => {
+    if (selectedMarkerPlace) {
+      const googleCategories = [
+        'cafe',
+        'store',
+        'food',
+        'point_of_interest',
+        'establishment',
+      ];
+
+      const placeCategories = ['카페', '상점', '음식점', '가볼만한곳', '기타'];
+
+      let selectedCategory = null;
+
+      for (let i = 0; i < googleCategories.length; i += 1) {
+        if (selectedMarkerPlace.types.includes(googleCategories[i])) {
+          selectedCategory = placeCategories[i];
+          break;
+        }
+      }
+
+      /* 내가 보내줄 마커정보들 : day, 장소명, 카테고리명, 장소위치, 장소사진 */
+      const placeInfo = {
+        date: selectedDate.toISOString().slice(0, 10),
+        placeName: selectedMarkerPlace.name,
+        categoryName: selectedCategory,
+        placePosition: {
+          lat: selectedMarkerPlace.geometry.location.lat(),
+          lng: selectedMarkerPlace.geometry.location.lng(),
+        },
+        photoUrl: selectedMarkerPlace.photos[0].getUrl,
+      };
+
+      console.log(selectedMarkerPlace);
+      console.log('placeInfo', placeInfo);
+      handleCloseMap();
+      handleAddPlace(placeInfo);
+    }
   };
 
   useEffect(() => {
-    if (map) {
-      const ps = new kakao.maps.services.Places();
-
-      ps.keywordSearch(onSearch, (data, status) => {
-        if (status === kakao.maps.services.Status.OK) {
-          console.log('Search Result:', data);
-          const newMarkers = data.map(place => ({
-            position: new kakao.maps.LatLng(place.y, place.x),
-            content: place.place_name,
-          }));
-
-          setMarkers(newMarkers);
-
-          const bounds = new kakao.maps.LatLngBounds();
-          newMarkers.forEach(marker => bounds.extend(marker.position));
-          map.setBounds(bounds);
-        }
-      });
-    }
-  }, [map, onSearch]);
+    searchMap();
+  }, [searchMap]);
 
   return (
     <Modal>
       <ModalBody>
-        <CloseIcon onClick={handleCloseModal} />
-        <SearchBox onSearch={handleSearch} />
-        <Map
-          center={{
-            lat: 37.566826,
-            lng: 126.9786567,
-          }}
-          level={3}
-          style={{
-            width: '100%',
-            height: '16vh',
-            borderRadius: '15px',
-            margin: '10px auto',
-          }}
-          onCreate={setMap}
-        >
-          {markers.map(marker => (
-            <MapMarker
-              key={marker.content}
-              position={marker.position}
-              onClick={() => setInfo(marker)}
-            >
-              {info && info.content === marker.content && (
-                <div style={{ color: '#000' }}>{marker.content}</div>
-              )}
-            </MapMarker>
-          ))}
-        </Map>
-        <UploadBtn className="bg-main" onClick={handleAddPlace}>
+        <CloseIcon onClick={handleCloseMap} />
+        <SearchBox searchMap={handleSearch} />
+        <MapContainer id="myMap" style={{ width: '100%', height: '400px' }} />
+        <UploadBtn className="bg-main" onClick={handleAddButtonClick}>
           추가하기
         </UploadBtn>
       </ModalBody>
     </Modal>
   );
 }
+
 export default MapModal;

@@ -12,7 +12,10 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="/manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>여행길</title>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=%REACT_APP_KAKAO_JS_KEY%&libraries=services,clusterer"></script>
+    <!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=%REACT_APP_KAKAO_JS_KEY%&libraries=services,clusterer"></script> -->
+    <script async
+    src="https://maps.googleapis.com/maps/api/js?key=%REACT_APP_GOOGLE_JS_KEY%&libraries=places" async defer>
+</script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
