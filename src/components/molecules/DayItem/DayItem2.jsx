@@ -51,7 +51,6 @@ function DayItem2({ startDate, endDate, handleSearch }) {
         }));
       }
     }
-    console.log(places);
   };
 
   // 선택된 장소 삭제하는 함수

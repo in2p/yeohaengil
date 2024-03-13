@@ -97,6 +97,7 @@ function MapModal({ handleCloseMap, selectedDate, handleAddPlace }) {
       });
     }
 
+    // 검색결과 마커 표시
     function placesSearchCB(results, status) {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (let i = 0; i < results.length; i += 1) {
@@ -116,6 +117,7 @@ function MapModal({ handleCloseMap, selectedDate, handleAddPlace }) {
     searchMap(searchedPlace);
   };
 
+  // 장소추가 모달의 추가하기 버튼
   const handleAddButtonClick = () => {
     if (selectedMarkerPlace) {
       const googleCategories = [
@@ -137,6 +139,7 @@ function MapModal({ handleCloseMap, selectedDate, handleAddPlace }) {
         }
       }
 
+      /* 내가 보내줄 마커정보들 : day, 장소명, 카테고리명, 장소위치, 장소사진 */
       const placeInfo = {
         date: selectedDate.toISOString().slice(0, 10),
         placeName: selectedMarkerPlace.name,
@@ -145,8 +148,10 @@ function MapModal({ handleCloseMap, selectedDate, handleAddPlace }) {
           lat: selectedMarkerPlace.geometry.location.lat(),
           lng: selectedMarkerPlace.geometry.location.lng(),
         },
+        photoUrl: selectedMarkerPlace.photos[0].getUrl,
       };
 
+      console.log(selectedMarkerPlace);
       console.log('placeInfo', placeInfo);
       handleCloseMap();
       handleAddPlace(placeInfo);

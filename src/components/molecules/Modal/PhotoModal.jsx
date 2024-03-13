@@ -104,6 +104,7 @@ function PhotoModal({ handleClosePhoto }) {
       imageUrlLists.push(currentImageUrl);
     }
 
+    // 최대 9장까지 사진 첨부
     if (imageUrlLists.length > 9) {
       imageUrlLists = imageUrlLists.slice(0, 9);
       alert('9장 초과');
