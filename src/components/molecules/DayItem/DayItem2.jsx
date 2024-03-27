@@ -1,8 +1,8 @@
-import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { useState } from 'react';
 import DayButton from '../../atoms/DayButton/DayButton.jsx';
 import MapModal from '../Modal/MapModal.jsx';
+import WriteDayContents from '../WriteDayContents/WriteDayContents.jsx';
 
 const DayContainer = styled.div`
   display: flex;
@@ -29,19 +29,43 @@ const AddPlaceBtn = styled.button`
   }
 `;
 
-function DayItem2({ startDate, endDate, handleSearch }) {
-  const day = useSelector(state => state.day);
-  const jsxElements = [];
-  const [uploadModal, setUploadModal] = useState(false);
+function DayItem2({ startDate, endDate, handleSearch, addPlaceInfo }) {
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [places, setPlaces] = useState({});
 
-  const handleCloseModal = () => {
-    setUploadModal(false);
+  // 선택된 날짜 변경 시 처리하는 함수
+  const handleDateChange = date => {
+    setSelectedDate(date);
   };
 
-  // 날짜범위 생성
-  const selectedDateRange = (start, end) => {
+  // 선택된 장소 변경 시 처리하는 함수
+  const handleAddPlace = (dayIndex, placeInfo) => {
+    if (placeInfo && selectedDate) {
+      const { date } = placeInfo;
+      if (date === selectedDate.toISOString().slice(0, 10)) {
+        setPlaces(prevPlaces => ({
+          ...prevPlaces,
+          [date]: [...(prevPlaces[date] || []), placeInfo],
+        }));
+        addPlaceInfo(dayIndex, placeInfo); // 서버에 보낼 placeInfo
+        console.log(addPlaceInfo);
+      }
+    }
+  };
+
+  // 선택된 장소 삭제하는 함수
+  const handleDeletePlace = (date, index) => {
+    const updatedPlaces = places[date].filter((_, idx) => idx !== index);
+    setPlaces(prevPlaces => ({
+      ...prevPlaces,
+      [date]: updatedPlaces,
+    }));
+  };
+
+  // 날짜 범위 생성 함수
+  const createDateRange = (start, end) => {
     const dates = [];
-    const currentDate = new Date(start); // startDate -> Date
+    const currentDate = new Date(start);
     while (currentDate <= end) {
       dates.push(new Date(currentDate));
       currentDate.setDate(currentDate.getDate() + 1);
@@ -49,31 +73,40 @@ function DayItem2({ startDate, endDate, handleSearch }) {
     return dates;
   };
 
-  const dateRange = selectedDateRange(startDate, endDate); // 날짜 범위
+  const dateRange = createDateRange(startDate, endDate);
 
-  for (let i = 0; i < dateRange.length; i += 1) {
-    const currentDate = dateRange[i];
-    jsxElements.push(
-      <div key={i}>
-        <DayContainer>
-          <DayButton bgColor="bg-main" day={i + 1} />
-          <SelectedDate>{`${
-            currentDate.getMonth() + 1
-          }.${currentDate.getDate()}`}</SelectedDate>
-        </DayContainer>
-        <AddPlaceBtn onClick={() => setUploadModal(true)}>
-          장소 추가
-        </AddPlaceBtn>
-        {uploadModal === true ? (
-          <MapModal
-            handleCloseModal={handleCloseModal}
-            onSearch={handleSearch}
+  return (
+    <>
+      {dateRange.map((currentDate, index) => (
+        <div key={currentDate.toISOString()}>
+          <DayContainer>
+            <DayButton bgColor="bg-main" day={index + 1} />
+            <SelectedDate>
+              {`${currentDate.getMonth() + 1}.${currentDate.getDate()}`}
+            </SelectedDate>
+          </DayContainer>
+          <WriteDayContents
+            places={places[currentDate.toISOString().slice(0, 10)]}
+            handleDeletePlace={i =>
+              handleDeletePlace(currentDate.toISOString().slice(0, 10), i)
+            }
           />
-        ) : null}
-      </div>,
-    );
-  }
-  return <div>{jsxElements}</div>;
+          <AddPlaceBtn onClick={() => handleDateChange(currentDate)}>
+            장소 추가
+          </AddPlaceBtn>
+          {selectedDate && selectedDate.getTime() === currentDate.getTime() && (
+            <MapModal
+              handleCloseMap={() => setSelectedDate(null)}
+              handleSearch={handleSearch}
+              selectedDate={currentDate}
+              handleAddPlace={handleAddPlace}
+              dayIndex={index}
+            />
+          )}
+        </div>
+      ))}
+    </>
+  );
 }
 
 export default DayItem2;

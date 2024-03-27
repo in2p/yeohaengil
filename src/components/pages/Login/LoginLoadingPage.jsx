@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
-
 import LoginSpinner from '../../organisms/LoginSpinner/LoginSpinner.jsx';
 import useOAuth from '../../../hooks/useOAuth.js';
 

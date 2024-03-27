@@ -33,10 +33,26 @@ const token = createSlice({
 });
 export const { setToken } = token.actions;
 
+const selectedPlace = createSlice({
+  name: 'selectedPlace',
+  initialState: null,
+  reducers: {
+    setPlace(state, action) {
+      return action.payload;
+    },
+    clearPlace(state) {
+      return null;
+    },
+  },
+});
+
+export const { setPlace, clearPlace } = selectedPlace.actions;
+
 export default configureStore({
   reducer: {
     // day: day.reducer,
     loggedIn: loggedIn.reducer,
     token: token.reducer,
+    selectedPlace: selectedPlace.reducer,
   },
 });

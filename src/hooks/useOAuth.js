@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState, useEffect, useSelector, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 function useOAuth() {
   const [jwtToken, setJwtToken] = useState(null);

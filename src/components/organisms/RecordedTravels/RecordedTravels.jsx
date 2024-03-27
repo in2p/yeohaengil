@@ -1,4 +1,4 @@
-import { useState, React } from 'react';
+import { useState, React, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { IoMdGrid, IoIosArrowForward } from 'react-icons/io';
@@ -8,7 +8,6 @@ import '../../../styles/globals.css';
 
 import CirclesListView from '../../molecules/CirclesListView/CirclesListView.jsx';
 import CirclesView from '../../molecules/CirclesView/CirclesView.jsx';
-import ArrowButton from '../../atoms/ArrowButton/ArrowButton.jsx';
 
 const recordedTrip = [
   {
@@ -33,15 +32,19 @@ const recordedTrip = [
     date: '2023.12.15 ~ 2023.12.19',
   },
 ];
-const RightArrowContainer = styled.div`
-  position: absolute;
-  top: 50%;
-  right: 0px;
-  transform: translate(0, -50%);
-`;
+for (let i = 3; i < 15; i += 1) {
+  recordedTrip.push({
+    id: i,
+    img_url:
+      'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dHJpcHxlbnwwfHwwfHx8MA%3D%3D',
+    location: `선릉${i}`,
+    date: '2023.12.04 ~ 2023.12.10',
+  });
+}
 
 function RecordedTravels() {
   const [isDetail, setIsDetail] = useState(false);
+
   return (
     <div style={{ marginTop: '15px' }}>
       <div className="d-flex flex-between">
@@ -65,16 +68,11 @@ function RecordedTravels() {
         )}
       </div>
       {recordedTrip.length > 0 ? (
-        <div className="d-flex flex-between" style={{ position: 'relative' }}>
+        <div className="d-flex flex-between">
           {!isDetail ? (
             <CirclesView travels={recordedTrip} />
           ) : (
             <CirclesListView travels={recordedTrip} />
-          )}
-          {!isDetail && (
-            <RightArrowContainer>
-              <ArrowButton />
-            </RightArrowContainer>
           )}
         </div>
       ) : (
