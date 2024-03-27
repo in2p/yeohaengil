@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import SearchBox from '../../atoms/SearchBox/SearchBox.jsx';
+import WriteButton from '../../organisms/WriteButton/WriteButton.jsx';
 
 const { google } = window;
 
@@ -57,9 +58,10 @@ const UploadBtn = styled.button`
   margin-top: 5px;
 `;
 
-function MapModal({ handleCloseMap, selectedDate, handleAddPlace }) {
+function MapModal({ handleCloseMap, selectedDate, handleAddPlace, dayIndex }) {
   const [selectedMarkerPlace, setSelectedMarkerPlace] = useState(null);
 
+  // 지도
   const searchMap = useCallback(searchedPlace => {
     const infowindow = new google.maps.InfoWindow();
     const mapOptions = {
@@ -71,6 +73,7 @@ function MapModal({ handleCloseMap, selectedDate, handleAddPlace }) {
       mapOptions,
     );
 
+    // 마커표시
     function displayMarker(place) {
       const marker = new google.maps.Marker({
         map,
@@ -113,6 +116,7 @@ function MapModal({ handleCloseMap, selectedDate, handleAddPlace }) {
     }
   }, []);
 
+  // 모달 안의 검색창
   const handleSearch = searchedPlace => {
     searchMap(searchedPlace);
   };
@@ -139,22 +143,23 @@ function MapModal({ handleCloseMap, selectedDate, handleAddPlace }) {
         }
       }
 
-      /* 내가 보내줄 마커정보들 : day, 장소명, 카테고리명, 장소위치, 장소사진 */
+      let photoUrl = selectedMarkerPlace.icon;
+
+      if (selectedMarkerPlace.photos && selectedMarkerPlace.photos.length > 0) {
+        photoUrl = selectedMarkerPlace.photos[0].getUrl();
+      }
+
+      /* 내가 보내줄 마커정보들 : date, 장소명, 카테고리명, 장소위치(위도, 경도), 장소사진 */
       const placeInfo = {
         date: selectedDate.toISOString().slice(0, 10),
         placeName: selectedMarkerPlace.name,
         categoryName: selectedCategory,
-        placePosition: {
-          lat: selectedMarkerPlace.geometry.location.lat(),
-          lng: selectedMarkerPlace.geometry.location.lng(),
-        },
-        photoUrl: selectedMarkerPlace.photos[0].getUrl,
+        placePositionLat: selectedMarkerPlace.geometry.location.lat(),
+        placePositionLng: selectedMarkerPlace.geometry.location.lng(),
+        photoUrls: photoUrl,
       };
-
-      console.log(selectedMarkerPlace);
-      console.log('placeInfo', placeInfo);
       handleCloseMap();
-      handleAddPlace(placeInfo);
+      handleAddPlace(dayIndex, placeInfo);
     }
   };
 

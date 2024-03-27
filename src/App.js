@@ -20,6 +20,8 @@ import SettingPrev from './components/pages/SettingPage/SettingPrev.jsx';
 import LoginLoadingPage from './components/pages/Login/LoginLoadingPage.jsx';
 
 import useToken from './hooks/useToken.js';
+import PhotoPage from './components/pages/WriterPage/PhotoPage.jsx';
+import SettingModifyPage from './components/pages/SettingPage/SettingModifyPage.jsx';
 // in app.js
 axios.defaults.withCredentials = true;
 let vh = window.innerHeight * 0.01;
@@ -59,7 +61,7 @@ function App() {
         <div className="fullContainer">
           <Routes>
             <Route path="/" element={<Main />} />
-            <Route path="/write" element={<WritePage />} />
+            <Route path="/posting" element={<WritePage />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/messages" element={<MessageListPage />} />
             <Route path="/mypage" element={<MyPage />} />
@@ -69,7 +71,9 @@ function App() {
             <Route path="/login/oauth2/kakao" element={<LoginHandler />} />
             <Route path="/login/oauth2/naver" element={<LoginHandler />} /> */}
             <Route path="/setting" element={<SettingPrev />} />
+            <Route path="/modifyProfile" element={<SettingModifyPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/postingphoto" element={<PhotoPage />} />
             <Route
               path="/login/oauth2/*"
               // element={<LoginLoadingPage setToken={saveToken} />}
