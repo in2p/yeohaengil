@@ -16,6 +16,57 @@ const Box = styled.div`
   overflow: hidden;
 `;
 
+const placeInfo = {
+  '2020-12-01': [
+    {
+      placeName: 'Sadang',
+      categoryName: '카페',
+      placePositionLat: 12392,
+      placePositionLng: 12314,
+      photoUrls: 'http://',
+    },
+    {
+      placeName: 'Starbucks',
+      categoryName: '카페',
+      placePositionLat: 12392,
+      placePositionLng: 12314,
+      photoUrls: 'http://',
+    },
+  ],
+  '2020-12-02': [
+    {
+      placeName: 'Sadang',
+      categoryName: '카페',
+      placePositionLat: 12392,
+      placePositionLng: 12314,
+      photoUrls: 'http://',
+    },
+    {
+      placeName: 'Starbucks',
+      categoryName: '카페',
+      placePositionLat: 12392,
+      placePositionLng: 12314,
+      photoUrls: 'http://',
+    },
+  ],
+  '2020-12-03': [
+    {
+      placeName: 'Sadang',
+      categoryName: '카페',
+      placePositionLat: 12392,
+      placePositionLng: 12314,
+      photoUrls: 'http://',
+    },
+    {
+      placeName: 'Starbucks',
+      categoryName: '카페',
+      placePositionLat: 12392,
+      placePositionLng: 12314,
+      photoUrls: 'http://',
+    },
+  ],
+};
+
 const items = [
   [
     {
@@ -24,7 +75,7 @@ const items = [
       category: '카페',
       price: '8000원',
     },
-    { id: 1, title: '원루프랩 강남점', category: '식당', price: '18000원' },
+    { id: 1, title: '원루프랩 강남점', category: '식당', price: '180000원' },
     { id: 2, title: '원루프랩 수원점', category: '숙소', price: '118000원' },
   ],
   [
