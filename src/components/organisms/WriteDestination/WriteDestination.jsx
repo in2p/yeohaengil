@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { LuPlane, LuCalendarDays } from 'react-icons/lu';
 import ModalDestination from '../../molecules/WriteBottomsheet/ModalDestination.jsx';
@@ -40,7 +40,7 @@ const CalendarContainer = styled.div`
   z-index: 100;
 `;
 
-function WriteDestination({ onApply, selectDaysRange }) {
+function WriteDestination({ onApply, setCity, setDate, addPlaceInfo }) {
   const [bottomOpen, setBottomOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSubcategory, setSelectedSubcategory] = useState(null);
@@ -48,7 +48,7 @@ function WriteDestination({ onApply, selectDaysRange }) {
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [selectedDateRange, setSelectedDateRange] = useState(null);
 
-  // 선택 완료 시,아이콘 값 변경
+  // 지역선택 완료 시,아이콘 값 변경
   const isCategorySelected =
     selectedCategory !== null && selectedSubcategory !== null;
   const isDateSelected = selectedDateRange !== null;
@@ -58,20 +58,19 @@ function WriteDestination({ onApply, selectDaysRange }) {
   };
 
   const handleCategorySelection = (categoryId, subcategoryId) => {
-    // 선택한 카테고리 찾기
+    // 선택한 지역 카테고리 찾기
     const foundCategory = CATEGORIES.find(
       category => category.id === categoryId,
     );
-    console.log('Found category:', foundCategory);
 
-    // 선택한 서브카테고리 찾기
+    // 선택한 지역 서브카테고리 찾기
     const foundSubcategory = foundCategory.subcategories.find(
       subcategory => subcategory.subCategoryId === subcategoryId,
     );
-    console.log('Found subcategory:', foundSubcategory);
 
     setSelectedCategory(foundCategory.name);
     setSelectedSubcategory(foundSubcategory.name);
+    setCity(foundSubcategory.name); // 서버에 보낼 지역 저장
   };
 
   const handleDestinationApply = () => {
@@ -80,16 +79,23 @@ function WriteDestination({ onApply, selectDaysRange }) {
   };
 
   // 달력
-  const handleDateSelect = dateRange => {
-    setSelectedDateRange(dateRange);
-    setCalendarOpen(false);
-  };
 
+  // 달력형식
   const formatDateString = date => {
     const Cyear = date.getFullYear().toString().padStart(4, '0');
     const Cmonth = (date.getMonth() + 1).toString().padStart(2, '0');
     const Cday = date.getDate().toString().padStart(2, '0');
     return `${Cyear}/${Cmonth}/${Cday}`;
+  };
+
+  // 달력 범위 선택
+  const handleDateSelect = dateRange => {
+    setSelectedDateRange(dateRange);
+
+    setCalendarOpen(false);
+    const startDateInfo = formatDateString(dateRange[0]);
+    const endDateInfo = formatDateString(dateRange[1]);
+    setDate(startDateInfo, endDateInfo); // 서버에 보낼 date
   };
 
   return (
@@ -137,6 +143,7 @@ function WriteDestination({ onApply, selectDaysRange }) {
       <DayItem2
         startDate={selectedDateRange?.[0]}
         endDate={selectedDateRange?.[1]}
+        addPlaceInfo={addPlaceInfo}
       />
     </div>
   );

@@ -1,7 +1,5 @@
-import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
-import { LuAlignJustify, LuXCircle } from 'react-icons/lu';
+import { useState } from 'react';
 import DayButton from '../../atoms/DayButton/DayButton.jsx';
 import MapModal from '../Modal/MapModal.jsx';
 import WriteDayContents from '../WriteDayContents/WriteDayContents.jsx';
@@ -31,7 +29,7 @@ const AddPlaceBtn = styled.button`
   }
 `;
 
-function DayItem2({ startDate, endDate, handleSearch }) {
+function DayItem2({ startDate, endDate, handleSearch, addPlaceInfo }) {
   const [selectedDate, setSelectedDate] = useState(null);
   const [places, setPlaces] = useState({});
 
@@ -40,8 +38,8 @@ function DayItem2({ startDate, endDate, handleSearch }) {
     setSelectedDate(date);
   };
 
-  // 선택된 장소 변경 시 처리하는 useEffect
-  const handleAddPlace = placeInfo => {
+  // 선택된 장소 변경 시 처리하는 함수
+  const handleAddPlace = (dayIndex, placeInfo) => {
     if (placeInfo && selectedDate) {
       const { date } = placeInfo;
       if (date === selectedDate.toISOString().slice(0, 10)) {
@@ -49,6 +47,8 @@ function DayItem2({ startDate, endDate, handleSearch }) {
           ...prevPlaces,
           [date]: [...(prevPlaces[date] || []), placeInfo],
         }));
+        addPlaceInfo(dayIndex, placeInfo); // 서버에 보낼 placeInfo
+        console.log(addPlaceInfo);
       }
     }
   };
@@ -100,6 +100,7 @@ function DayItem2({ startDate, endDate, handleSearch }) {
               handleSearch={handleSearch}
               selectedDate={currentDate}
               handleAddPlace={handleAddPlace}
+              dayIndex={index}
             />
           )}
         </div>

@@ -54,6 +54,7 @@ const ChangePlace = styled(LuAlignJustify)`
   margin-right: 3px;
 `;
 
+// 마커정보들 생성하는 함수
 function WriteDayContents({ places, handleDeletePlace }) {
   return (
     <FlexBox>

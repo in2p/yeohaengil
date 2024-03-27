@@ -46,7 +46,7 @@ const UploadImgContainer = styled.div`
   gap: 10px;
 
   width: 100%;
-  height: 400px;
+  height: 350px;
   margin-top: 10px;
 
   background: rgba(217, 217, 217, 0.3);
@@ -59,8 +59,8 @@ const ImageContainer = styled.div`
 `;
 
 const PreviewImage = styled.img`
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
   border-radius: 10px;
   object-fit: cover;
 `;
@@ -91,6 +91,24 @@ const AddContainer = styled.label`
   color: #707070;
 `;
 
+const PhotoButton = styled.button`
+  /* 추가하기 버튼 */
+  font-weight: bold;
+  font-size: 12px;
+  width: 80px;
+  border-radius: 12px;
+
+  padding: 10px;
+  margin: 10px;
+  background-color: #fe4c40;
+  color: #fff;
+  border: none;
+
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
 function PhotoModal({ handleClosePhoto }) {
   const [showImages, setShowImages] = useState([]);
 
@@ -111,6 +129,7 @@ function PhotoModal({ handleClosePhoto }) {
     }
 
     setShowImages(imageUrlLists);
+    console.log(imageUrlLists);
   };
 
   // X버튼 클릭 시 이미지 삭제
@@ -145,6 +164,7 @@ function PhotoModal({ handleClosePhoto }) {
             ))}
           </UploadImgContainer>
         </PhotoUpload>
+        <PhotoButton>추가하기</PhotoButton>
       </ModalBody>
     </Modal>
   );
